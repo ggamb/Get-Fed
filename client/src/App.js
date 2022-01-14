@@ -16,6 +16,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { StoreProvider } from './utils/GlobalState';
 
 
 const httpLink = createHttpLink({
@@ -37,20 +38,21 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
-
 function App() {
-
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route component={NoMatch} />
-        </Switch>
+        <div>
+          <StoreProvider>
+            <Nav />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route component={NoMatch} />
+            </Switch>
+          </StoreProvider>
+        </div>
       </Router>
     </ApolloProvider>
   );

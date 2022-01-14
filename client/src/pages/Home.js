@@ -2,7 +2,7 @@ import React from "react";
 
 const Home = () => {
 
-    let restaurantsArray = []
+    let restaurantsArray = [];
 
     var options = {
         enableHighAccuracy: true,
@@ -58,7 +58,6 @@ const Home = () => {
                 ) : (
                     <h3>Please enter your location or accept geolocation permissions!</h3>
                 )}
-                {loading ? <img src={spinner} alt="loading" /> : null}
             </div>
         </div>
     );
