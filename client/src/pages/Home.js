@@ -51,11 +51,9 @@ const Home = () => {
         <div className="container">
             <div className="my-2">
                 <h2>Our Products:</h2>
-                {state.products.length ? (
+                {restaurantsArray.length ? (
                     <div className="flex-row">
-                        {restaurantsArray.map((restaurant) => (
 
-                        ))}
                     </div>
                 ) : (
                     <h3>Please enter your location or accept geolocation permissions!</h3>
