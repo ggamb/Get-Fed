@@ -18,10 +18,10 @@ const Home = () => {
         console.log(`Longitude: ${crd.longitude}`);
         console.log(`More or less ${crd.accuracy} meters.`);
 
-        /*fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
+        fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
             "method": "GET",
             "headers": {
-                "x-api-key": "63f52417403d221ebe783f211c6d2324"
+                "x-api-key": "72237e122d5017b21a87f62f05c13053"
             }
         })
         .then(response => response.json())
@@ -33,7 +33,7 @@ const Home = () => {
         })
         .catch(err => {
             console.error(err);
-        });*/
+        });
     }
 
     function error(err) {
@@ -58,7 +58,7 @@ const Home = () => {
                 ) : (
                     <h3>Please enter your location or accept geolocation permissions!</h3>
                 )}
-                {loading ? <img src={spinner} alt="loading" /> : null}
+                
             </div>
         </div>
     );
