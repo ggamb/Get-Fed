@@ -14,7 +14,7 @@ import Nav from './components/Nav'
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import RestaurantList from './components/resturant-list';
+//import RestaurantList from './components/resturant-list';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -51,7 +51,6 @@ function App() {
           <Route exact path="/signup" component={Signup} />
           <Route component={NoMatch} />
         </Switch>
-        <RestaurantList />
       </Router>
     </ApolloProvider>
   );

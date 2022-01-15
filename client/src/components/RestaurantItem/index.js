@@ -45,6 +45,7 @@ function RestaurantItem(item) {
       </Link>
       <div>
         <span>${price_range}</span>
+        <span>${address}</span>
       </div>
     </div>
 );
