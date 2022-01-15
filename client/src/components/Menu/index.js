@@ -27,46 +27,45 @@ function Menu() {
       })
       .catch(err => {
         console.error(err);
-      });
-  }, []);*/
+      });*/
+  }, []);
 
-    console.log(menuData);
+  console.log(menuData);
 
-    /*<h1>Select your items:</h1>
-    {resturants.map((item) => (
-    <button
-      key={item._id}
-      onClick={() => {
-        handleClick(item._id);
-      }}
-    >
-      {item.name}
-    </button>
-  ))}*/
+  /*<h1>Select your items:</h1>
+  {resturants.map((item) => (
+  <button
+    key={item._id}
+    onClick={() => {
+      handleClick(item._id);
+    }}
+  >
+    {item.name}
+  </button>
+))}*/
 
-    return (
-      <>
-        <div className="my-2">
-          <h2>Choose from the following menu items:</h2>
-          {menuData.length ? (
-            <div className="flex-row">
-              {menuData.map(menuItem => (
-                <MenuItem
-                  key={menuItem.item_id}
-                  _id={menuItem.item_id}
-                  itemName={menuItem.menu_item_name}
-                  itemPrice={menuItem.menu_item_pricing[0].priceString}
-                  category={menuItem.subsection}
-                />
-              ))}
-            </div>
-          ) : (
-            <h3>There is no menu data for this restaurant :(</h3>
-          )}
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+      <div className="my-2">
+        <h2>Choose from the following menu items:</h2>
+        {menuData.length ? (
+          <div className="flex-row">
+            {menuData.map(menuItem => (
+              <MenuItem
+                key={menuItem.item_id}
+                _id={menuItem.item_id}
+                itemName={menuItem.menu_item_name}
+                itemPrice={menuItem.menu_item_pricing[0].priceString}
+                category={menuItem.subsection}
+              />
+            ))}
+          </div>
+        ) : (
+          <h3>There is no menu data for this restaurant :(</h3>
+        )}
+      </div>
+    </>
+  );
 }
 
 export default Menu;
