@@ -10,4 +10,20 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} 
+
+header  {
+  padding: 20px 35px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: green;
+  
+}
+ 
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  color: red;
+
 }
