@@ -17,6 +17,7 @@ import Signup from './pages/Signup';
 //import RestaurantList from './components/resturant-list';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { StoreProvider } from './utils/GlobalState';
+import Menu from './components/Menu'
 
 
 const httpLink = createHttpLink({
@@ -49,6 +50,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
+              <Route exact path="/restaurant/:id" component={Menu} />
               <Route component={NoMatch} />
             </Switch>
           </StoreProvider>
