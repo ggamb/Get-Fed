@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import RestaurantItem from '../RestaurantItem';
 // import { useStoreContext } from '../../utils/GlobalState';
 
@@ -6,7 +6,15 @@ import RestaurantItem from '../RestaurantItem';
 
 function RestaurantList() {
 
-  let restaurantsArray = [];
+  /*let [restaurantsArray, setRestaurantsArray] = useState([{
+    restaurant_name: 'OhZone', restaurant_phone: '(240) 844-1198', restaurant_website: 'http://www.misterdwash.wix.com/ohzonelounge-', hours: 'Mon-Thu: 10am-2am Fri-Sun: 10am-3am', price_range: '$', restaurant_id: 3890038376985698
+
+  },
+  {
+    restaurant_name: 'Turning Natural', restaurant_phone: '(202) 800-8828', restaurant_website: 'http:///dc/washington/665098-turning-natural/', hours: '', price_range: '', restaurant_id: 3890038376985703
+  }]);*/
+
+  let [restaurantsArray, setRestaurantsArray] = useState([]);
 
   var options = {
     enableHighAccuracy: true,
@@ -16,21 +24,22 @@ function RestaurantList() {
 
   function success(pos) {
     var crd = pos.coords;
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
+
+    let sampleRestaurantArray = [];
 
     fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
       "method": "GET",
       "headers": {
-        "x-api-key": "72237e122d5017b21a87f62f05c13053"
+        "x-api-key": "5daa0cba197fbe032d787ffb69e925d8"
       }
     })
       .then(response => response.json())
       .then(restaurantData => {
-        console.log(restaurantData);
         restaurantData.data.forEach(restaurant => {
-          restaurantsArray.push(restaurant);
+          sampleRestaurantArray.push(restaurant);
         });
+
+        setRestaurantsArray(sampleRestaurantArray);
       })
       .catch(err => {
         console.error(err);
@@ -41,7 +50,9 @@ function RestaurantList() {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
 
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }, [])
 
 
   console.log('restraurants array', restaurantsArray);
@@ -91,7 +102,6 @@ function RestaurantList() {
               _id={restaurant.restaurant_id}
               restaurant_name={restaurant.restaurant_name}
               price_range={restaurant.price_range}
-              address={restaurant.address.formatted}
             />
           ))}
         </div>

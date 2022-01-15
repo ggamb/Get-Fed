@@ -1,12 +1,10 @@
 import React from "react";
-import RestaurantList from '../components/restaurant-list';
+import RestaurantList from '../components/RestaurantList';
 
 const Home = () => {
     return (
         <div className="container">
-            <div className="flex-row">
-                <RestaurantList></RestaurantList>
-            </div>
+            <RestaurantList></RestaurantList>
         </div>
     );
 };
