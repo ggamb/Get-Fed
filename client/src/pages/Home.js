@@ -1,4 +1,12 @@
 import React from "react";
+//import Profile from "../assets/images/deshpl.jpg";
+import Drink from "../assets/images/Drinkpack.jpg";
+
+
+
+
+
+
 
 const Home = () => {
 
@@ -50,11 +58,15 @@ const Home = () => {
 
         <div className="container">
             <div className="my-2">
+            <img src={Drink} alt="Drink"></img>
+            
                 <h2>Our Products:</h2>
                 {restaurantsArray.length ? (
                     <div className="flex-row">
 
                     </div>
+
+
                 ) : (
                     <h3>Please enter your location or accept geolocation permissions!</h3>
                 )}
