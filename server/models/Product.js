@@ -11,13 +11,10 @@ const productSchema = new Schema({
   description: {
     type: String
   },
-  image: {
-    type: String
-  },
   price: {
     type: Number,
     required: true,
-    min: 0.99
+    min: 0.01
   },
   quantity: {
     type: Number,

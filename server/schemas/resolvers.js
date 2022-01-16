@@ -1,17 +1,17 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { User } = require('../models');
+const { User, Order } = require('../models');
 
 const resolvers = {
     Query: {
         user: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findById(context.user._id)/*.populate({
+                const user = await User.findById(context.user._id).populate({
                     path: 'orders.products',
                     populate: 'category'
-                })*/;
+                });
 
-                //user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+                user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
                 return user;
             }
@@ -21,7 +21,19 @@ const resolvers = {
         users: async () => {
             return User.find()
             .select('-__v -password')
-        }
+        },
+        order: async (parent, { _id }, context) => {
+            if (context.user) {
+              const user = await User.findById(context.user._id).populate({
+                path: 'orders.products',
+                populate: 'category'
+              });
+      
+              return user.orders.id(_id);
+            }
+      
+            throw new AuthenticationError('Not logged in');
+          }
     },
     Mutation: {
         addUser: async (parent, args) => {
@@ -47,19 +59,19 @@ const resolvers = {
 
             return { token, user };
         },
-        order: async (parent, { _id }, context) => {
+        addOrder: async (parent, { products }, context) => {
+            console.log(context);
             if (context.user) {
-              const user = await User.findById(context.user._id).populate({
-                path: 'orders.products',
-                populate: 'category'
-              });
+              const order = new Order({ products });
       
-              return user.orders.id(_id);
+              await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+      
+              return order;
             }
       
             throw new AuthenticationError('Not logged in');
           },
-    }
+     }
 };
 
 module.exports = resolvers;
