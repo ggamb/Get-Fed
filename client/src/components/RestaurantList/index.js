@@ -30,7 +30,7 @@ function RestaurantList() {
     fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
       "method": "GET",
       "headers": {
-        "x-api-key": "907bfc9a1fe3940e4a234c976264eb9f"
+        "x-api-key": "90465a99a13d1c344574ccc236501cf0"
       }
     })
       .then(response => response.json())

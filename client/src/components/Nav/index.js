@@ -47,7 +47,7 @@ function Nav() {
             <div class="container">
               <Link to="/">
                 <a class="navbar-brand" href="#">
-                  <img src="../../utils/logo/logo.png" alt="" width="30" height="24"></img>
+                  {/* <img src="../../utils/images/pretty_bg.jpg" alt="" width="30" height="24"></img> */}
                 </a>
               </Link>          
             </div>
