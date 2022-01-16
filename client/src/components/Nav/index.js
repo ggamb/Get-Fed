@@ -41,16 +41,29 @@ function Nav() {
 
   return (
     <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
-          <span role="img" aria-label="a tasty hamburger">🍔</span>
-          Get Fed
-        </Link>
-      </h1>
-
-      <nav>
+      <div className="header">
+        <h1>
+          <nav class="navbar navbar-light bg-light">
+            <div class="container">
+              <Link to="/">
+                <a class="navbar-brand" href="#">
+                  <img src="../../utils/images/logo.png" alt="" width="30" height="24"></img>
+                </a>
+              </Link>          
+            </div>
+          </nav>
+          
+            {/* <span role="img" aria-label="a tasty hamburger">🍔</span>
+            Get Fed */} 
+        
+        </h1>
+      </div>
+      <nav id="nav">
         {showNavigation()}
       </nav>
+
+      <div className="background"></div>
+
     </header>
   );
 }
