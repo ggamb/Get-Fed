@@ -9,7 +9,7 @@ function Menu() {
   useEffect(() => {
     let sampleMenuData = [];
 
-    /*fetch(`https://api.documenu.com/v2/restaurant/${id}/menuitems`, {
+    fetch(`https://api.documenu.com/v2/restaurant/${id}/menuitems`, {
       "method": "GET",
       "headers": {
         "x-api-key": "907bfc9a1fe3940e4a234c976264eb9f"
@@ -27,7 +27,7 @@ function Menu() {
       })
       .catch(err => {
         console.error(err);
-      });*/
+      });
   }, []);
 
   console.log(menuData);

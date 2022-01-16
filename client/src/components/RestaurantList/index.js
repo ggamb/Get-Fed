@@ -27,7 +27,7 @@ function RestaurantList() {
 
     let sampleRestaurantArray = [];
 
-    /*fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
+    fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
       "method": "GET",
       "headers": {
         "x-api-key": "907bfc9a1fe3940e4a234c976264eb9f"
@@ -43,7 +43,7 @@ function RestaurantList() {
       })
       .catch(err => {
         console.error(err);
-      });*/
+      });
   }
 
   function error(err) {
