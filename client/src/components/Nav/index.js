@@ -1,9 +1,11 @@
 import React from "react";
 import Auth from "../../utils/auth";
+//import Logo from "../assets/images/Logo.png";
 import { Link } from "react-router-dom";
 
-function Nav() {
 
+
+function Nav() {
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
@@ -69,6 +71,6 @@ function Nav() {
       </nav>
     </header>
   );
-}
+};
 
 export default Nav;

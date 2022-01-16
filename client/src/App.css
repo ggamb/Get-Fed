@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(112, 24, 24);
 }
 
 .App-link {
@@ -35,4 +35,38 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.container{
+  background-color: hsl(111, 82%, 63%);
+
+}
+root {
+  --dark: #a6ec91;
+  --medium: #112a7a;
+  --dark1: #8b8586;
+  --medium1: #DBECE3ED;
+  --light: #a3acaa;
+  --highlight: firebrick;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: lighter;
+}
+
+.container {
+ 
+  background: linear-gradient(
+    to bottom right,
+    var(--medium1),
+    var(--dark1)
+  );
+}
+
+img {
+  max-width: 100%;
 }

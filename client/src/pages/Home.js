@@ -1,10 +1,7 @@
 import React from "react";
 //import Profile from "../assets/images/deshpl.jpg";
-import Drink from "../assets/images/Drinkpack.jpg";
-
-
-
-
+import Drink from "../assets/images/pretty_bg.jpg";
+import "../styles/Home.css";
 
 
 
@@ -56,24 +53,17 @@ const Home = () => {
 
     return (
 
-        <div className="container">
-            <div className="my-2">
-            <img src={Drink} alt="Drink"></img>
-            
-                <h2>Our Products:</h2>
-                {restaurantsArray.length ? (
-                    <div className="flex-row">
 
-                    </div>
+       <div className="container" style={{ backgroundImage: `url(${Drink})` }}>
 
-
-                ) : (
-                    <h3>Please enter your location or accept geolocation permissions!</h3>
-                )}
-                
+        <div className="headerContainer" >
+    
             </div>
-        </div>
+            </div>
+
+       
+        
+        
     );
 };
-
 export default Home;
