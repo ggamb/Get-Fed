@@ -8,11 +8,17 @@ const typeDefs = gql`
     email: String
     orders: [Order]
   }
+
+  type Category {
+    _id: ID
+    name: String
+  }
+
   type Product {
     _id: ID
     itemName: String
     itemPrice: Float
-    category: String
+    category: Category
   }
 
   type Auth {
