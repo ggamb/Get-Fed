@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import CartItems from "../CartItems";
 import Auth from "../../utils/auth";
-// import "./style.css";
+import "./style.css";
 import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
@@ -55,7 +55,7 @@ const Cart = () => {
     return (
       <div className="cart-closed" onClick={toggleCart}>
         <span role="img" aria-label="trash">
-          :shopping_trolley:
+        🛒
         </span>
       </div>
     );
