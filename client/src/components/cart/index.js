@@ -14,6 +14,7 @@ const Cart = () => {
   const [state, dispatch] = useStoreContext();
   console.log(state)
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise("cart", "get");
@@ -23,6 +24,7 @@ const Cart = () => {
       getCart();
     }
   }, [state.cart.length, dispatch]);
+
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
@@ -30,16 +32,19 @@ const Cart = () => {
       });
     }
   }, [data]);
+
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
   }
+  
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach((item) => {
-      sum += item.price * item.purchaseQuantity;
+      sum += item.itemPriceFloat * item.purchaseQuantity;
     });
     return sum.toFixed(2);
   }
+
   function submitCheckout() {
     const productIds = [];
     getCheckout({
@@ -51,6 +56,7 @@ const Cart = () => {
       }
     });
   }
+
   if (!state.cartOpen) {
     return (
       <div className="cart-closed" onClick={toggleCart}>
@@ -60,6 +66,7 @@ const Cart = () => {
       </div>
     );
   }
+
   return (
     <div className="cart">
       <div className="close" onClick={toggleCart}>

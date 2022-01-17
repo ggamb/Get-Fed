@@ -6,7 +6,7 @@ import { idbPromise } from "../../utils/helpers";
 function MenuItem(menuItem) {
   const [state, dispatch] = useStoreContext();
 
-  const { _id, itemName, itemPrice, category } = menuItem;
+  const { _id, itemName, itemPriceString, itemPriceFloat, category } = menuItem;
   console.log("Menu Item", menuItem);
   const { cart } = state;
 
@@ -25,7 +25,7 @@ function MenuItem(menuItem) {
     } else {
       dispatch({
         type: ADD_TO_CART,
-        product: { ...itemName, purchaseQuantity: 1 }
+        product: { ...menuItem, purchaseQuantity: 1 }
       });
       // idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
@@ -35,10 +35,10 @@ function MenuItem(menuItem) {
       <div className="card px-1 py-1">
         <div>
           <p>{itemName}</p>
-          <p>{itemPrice}</p>
+          <p>{itemPriceString}</p>
           <p>{category}</p>
         </div>
-        <button  onClick={addToCart}>Add to cart</button>
+        <button onClick={addToCart}>Add to cart</button>
       </div>
     );
    };

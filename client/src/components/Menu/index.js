@@ -55,7 +55,8 @@ function Menu() {
                 key={menuItem.item_id}
                 _id={menuItem.item_id}
                 itemName={menuItem.menu_item_name}
-                itemPrice={menuItem.menu_item_pricing[0].priceString}
+                itemPriceFloat = {menuItem.menu_item_price}
+                itemPriceString={menuItem.menu_item_pricing[0].priceString}
                 category={menuItem.subsection}
               />
             ))}

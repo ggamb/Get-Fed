@@ -6,6 +6,10 @@ import { idbPromise } from "../../utils/helpers";
 const CartItems = ({ item }) => {
   const [, dispatch] = useStoreContext();
 
+  console.log(item);
+
+  const {category, itemName, itemPriceFloat, itemPriceString, purchaseQuantity} = item;
+
   const removeFromCart = (item) => {
     dispatch({
       type: REMOVE_FROM_CART,
@@ -36,7 +40,7 @@ const CartItems = ({ item }) => {
     <div className="flex-row">
       <div>
         <div>
-          {item.name}, ${item.price}
+          {itemName}, {itemPriceString}
         </div>
         <div>
           <span>Qty:</span>
