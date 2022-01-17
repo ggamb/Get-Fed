@@ -18,7 +18,7 @@ import Signup from './pages/Signup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { StoreProvider } from './utils/GlobalState';
 import Menu from './components/Menu'
-
+import Cart from './components/Cart';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -46,6 +46,7 @@ function App() {
         <div>
           <StoreProvider>
             <Nav />
+            <Cart/>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
