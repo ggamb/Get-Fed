@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import RestaurantItem from '../RestaurantItem';
 // import { useStoreContext } from '../../utils/GlobalState';
-
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
 // import { idbPromise } from '../../utils/helpers';
 
 function RestaurantList() {
@@ -30,7 +31,7 @@ function RestaurantList() {
     fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
       "method": "GET",
       "headers": {
-        "x-api-key": "b039ecf465ac2977b73b6de2f19b699b"
+        "x-api-key": "90465a99a13d1c344574ccc236501cf0"
       }
     })
       .then(response => response.json())
@@ -95,16 +96,17 @@ function RestaurantList() {
     <div className="my-2">
       <h2>Our Restaurant:</h2>
       {restaurantsArray.length ? (
-        <div className="flex-row">
+        <div className='flex-row'>
           {restaurantsArray.map(restaurant => (
-            <RestaurantItem
+             <RestaurantItem
               key={restaurant.restaurant_id}
               _id={restaurant.restaurant_id}
+              
               restaurant_name={restaurant.restaurant_name}
               price_range={restaurant.price_range}
             />
           ))}
-        </div>
+       </div>
       ) : (
         <h3>Please turn on geolocation or use the search bar above!</h3>
       )}
