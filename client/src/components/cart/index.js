@@ -12,7 +12,7 @@ import { useLazyQuery } from "@apollo/client";
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
-  console.log(state)
+  console.log("State ", state);
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
   useEffect(() => {
     async function getCart() {
