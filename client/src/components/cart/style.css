@@ -5,11 +5,12 @@
     min-width: 20%;
     max-width: 30%;
     max-height: 60%;
-    background-color: var(--light);
+    background-color: white;
     overflow: auto;
     padding: .5rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
     border-bottom-left-radius: .5rem;
+    z-index: 9999;
 }
 
 .cart h2 {
