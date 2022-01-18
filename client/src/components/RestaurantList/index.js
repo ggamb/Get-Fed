@@ -94,7 +94,7 @@ function RestaurantList() {
 
   return (
     <div className="my-2">
-      <h2>Our Restaurant:</h2>
+      <h2>Choose from the following restaurants near you!</h2>
       {restaurantsArray.length ? (
         <div className='flex-row'>
           {restaurantsArray.map(restaurant => (
@@ -106,6 +106,8 @@ function RestaurantList() {
               price_range={restaurant.price_range}
               cuisines = {restaurant.cuisines}
               hours = {restaurant.hours}
+              phoneNumber = {restaurant.restaurant_phone}
+              website = {restaurant.restaurant_website}
             />
           ))}
        </div>

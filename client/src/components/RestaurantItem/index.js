@@ -6,7 +6,7 @@ import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 // import { idbPromise } from "../../utils/helpers";
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, ListGroup, ListGroupItem
+  CardTitle, CardSubtitle, Button, ListGroup, ListGroupItem, List
 } from 'reactstrap';
 
 
@@ -18,8 +18,28 @@ function RestaurantItem(restaurantDetail) {
     _id,
     price_range,
     address,
-    hours
+    hours,
+    cuisines,
+    phoneNumber,
+    website
   } = restaurantDetail;
+
+  let cuisinesString = '';
+
+  if (cuisines[0] !== '') {
+    for(let i = 0; i < cuisines.length; i++) {
+      if(i< cuisines.length-1) {
+        cuisinesString += cuisines[i] + ", ";
+      } else {
+        cuisinesString += cuisines[i];
+      }
+    }
+  }
+  
+  function isValidURL(string) {
+    var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    return (res !== null)
+  };
 
   // const { cart } = state
 
@@ -45,20 +65,43 @@ function RestaurantItem(restaurantDetail) {
   // }
 
   return (
-    <Card border="primary">
-      <CardBody>
-        <CardTitle>
-          <Link to={`/restaurant/${_id}`}>
-            <p>{restaurant_name}</p>
-          </Link>
-        </CardTitle>
-        <ListGroup>
-          <ListGroupItem>Price: {price_range}</ListGroupItem>
-          <ListGroupItem>Address: <span>{address}</span></ListGroupItem>
-          <ListGroupItem>Hours: <span>{hours}</span></ListGroupItem>
-      </ListGroup>
-    </CardBody>
-    </Card >
+    <>
+      <Card>
+        <CardBody>
+          <CardTitle>
+            <Link to={`/restaurant/${_id}`}>
+              {restaurant_name}
+            </Link>
+          </CardTitle>
+          <ListGroup className="restaurant-list-group">
+            <>
+              {cuisines[0] !== '' ? (
+                <ListGroupItem>Cuisines: <br/>{cuisinesString}</ListGroupItem>
+              ) : null}
+            </>
+            {address ? (
+              <ListGroupItem>Address: <br />{address}</ListGroupItem>
+            ) : null}
+
+            {phoneNumber ? (
+              <ListGroupItem>Number: <br />{phoneNumber}</ListGroupItem>
+            ) : null}
+
+            {website && isValidURL(website) ? (
+              <ListGroupItem><a href={website} target="_blank">Website</a></ListGroupItem>
+            ) : null}
+
+            {hours ? (
+              <ListGroupItem>Hours: <br />{hours}</ListGroupItem>
+            ) : null}
+
+            {price_range ? (
+              <ListGroupItem>Price: {price_range}</ListGroupItem>
+            ) : null}
+          </ListGroup>
+        </CardBody>
+      </Card >
+    </>
   );
 }
 

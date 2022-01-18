@@ -203,6 +203,16 @@ input:focus {
   text-align: center;
 }
 
+.restaurant-list-group{
+  position: relative;
+  display: block;
+  color: #212529;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  text-align: left;
+}
+
 .error-text {
   color: var(--error);
 }
