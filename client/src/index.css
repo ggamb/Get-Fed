@@ -2,17 +2,17 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 0; 
 }
 
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 body, html {
   height: 100%;
@@ -20,34 +20,68 @@ body, html {
 } 
 
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-} 
+}  */
 
-header  {
+header {
   padding: 20px 35px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-image: url('./utils/images/pretty_bg.jpg');
+  background-image: url('./utils/images/cooking.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: 80%;
-  position: sticky;
-  /* opacity: 80%; */
-}
-
-.background {
-padding: 300px; 
+  position: sticky; 
+  top: 0;
+  /* opacity: 80%; */ 
 }
 
 .mx-1 {
   list-style-type: none;
   display: inline;
-  font-size: 25px;
+}
+
+.mx-1 a {
+  color: green;
+  font-size: 20px;
 }
 
 a:-webkit-any-link {
   text-decoration: none;
 }
+
+
+.navbar {
+  mix-blend-mode: multiply;
+}
+
+.jumbo {
+  background-image: url('./utils/images/cooking.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 80%;
+  position: sticky; 
+  padding: 60px;
+  color: white;
+}
+
+.button {
+  padding: 10px 15px;
+}
+
+.login {
+  padding-right: 15px;
+}
+
+/* .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.signup-page {
+  display: flex;
+} */

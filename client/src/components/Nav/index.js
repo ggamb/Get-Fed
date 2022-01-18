@@ -1,6 +1,8 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import logo from "../../utils/images/logo.png";
+import { Button, Outline } from "reactstrap";
 
 function Nav() {
 
@@ -8,7 +10,7 @@ function Nav() {
     if (Auth.loggedIn()) {
       return (
         <ul className="flex-row">
-          <li className="mx-1">
+          <li className="mx-1 ">
             <Link to="/orderHistory">
               Order History
             </Link>
@@ -23,13 +25,13 @@ function Nav() {
       );
     } else {
       return (
-        <ul className="flex-row">
-          <li className="mx-1">
+        <ul className="flex-row position-absolute top-0">
+          <Button outline color="success" className="mx-1 signup">
             <Link to="/signup">
               Signup
             </Link>
-          </li>
-          <li className="mx-1">
+          </Button>
+          <li className="mx-1 login">
             <Link to="/login">
               Login
             </Link>
@@ -40,17 +42,19 @@ function Nav() {
   }
 
   return (
+
     <header className="flex-row px-1">
       <div className="header">
         <h1>
-          <nav class="navbar navbar-light bg-light">
-            <div class="container">
-              <Link to="/">
-                <a class="navbar-brand" href="#">
-                  {/* <img src="../../utils/images/pretty_bg.jpg" alt="" width="30" height="24"></img> */}
-                </a>
-              </Link>          
-            </div>
+          <nav>
+            
+              <Link to="/" className="position-absolute top-0 start-50 translate-middle-x">
+                  <img src= {logo} alt="" width="120" height="100"></img>
+              </Link>   
+              <nav id="nav" className="button">
+                {showNavigation()}
+               </nav>       
+         
           </nav>
           
             {/* <span role="img" aria-label="a tasty hamburger">🍔</span>
@@ -58,11 +62,9 @@ function Nav() {
         
         </h1>
       </div>
-      <nav id="nav">
-        {showNavigation()}
-      </nav>
+      
 
-      <div className="background"></div>
+      {/* <div className="background"></div> */}
 
     </header>
   );
