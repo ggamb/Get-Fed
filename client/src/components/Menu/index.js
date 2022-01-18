@@ -12,7 +12,7 @@ function Menu() {
     fetch(`https://api.documenu.com/v2/restaurant/${id}/menuitems`, {
       "method": "GET",
       "headers": {
-        "x-api-key": "90465a99a13d1c344574ccc236501cf0"
+        "x-api-key": "c549b579cc13be11b832883ffe080a17"
       }
     })
       .then(response => response.json())

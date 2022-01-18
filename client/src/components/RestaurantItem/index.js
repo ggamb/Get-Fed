@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 // import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 // import { idbPromise } from "../../utils/helpers";
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button, ListGroup, ListGroupItem
+} from 'reactstrap';
 
 
 function RestaurantItem(restaurantDetail) {
@@ -13,7 +17,8 @@ function RestaurantItem(restaurantDetail) {
     restaurant_name,
     _id,
     price_range,
-    address
+    address,
+    hours
   } = restaurantDetail;
 
   // const { cart } = state
@@ -40,15 +45,20 @@ function RestaurantItem(restaurantDetail) {
   // }
 
   return (
-    <div className="card px-1 py-1">
-      <Link to={`/restaurant/${_id}`}>
-        <p>{restaurant_name}</p>
-      </Link>
-      <div>
-        <span>${price_range}</span>
-        <span>${address}</span>
-      </div>
-    </div>
+    <Card border="primary">
+      <CardBody>
+        <CardTitle>
+          <Link to={`/restaurant/${_id}`}>
+            <p>{restaurant_name}</p>
+          </Link>
+        </CardTitle>
+        <ListGroup>
+          <ListGroupItem>Price: {price_range}</ListGroupItem>
+          <ListGroupItem>Address: <span>{address}</span></ListGroupItem>
+          <ListGroupItem>Hours: <span>{hours}</span></ListGroupItem>
+      </ListGroup>
+    </CardBody>
+    </Card >
   );
 }
 
