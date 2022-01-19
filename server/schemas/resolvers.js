@@ -53,13 +53,23 @@ const resolvers = {
       return await Product.findById(_id).populate("category");
     },
     checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
-      const line_items = [];
+      console.log("ENTER CHECKOUT FUNCTION")
+      await Order.create ({ products: args.products, purchaseDate: new Date() });   
+      // const url = new URL(context.headers.referer).origin;
 
-      const { products } = await order.populate("products").execPopulate();
+
+      // const order = new Order({ products: args.products });
+      const line_items = [];
+      
+      // const { products } = await order.populate("products").execPopulate();
+      
+      let products = args.products[_id, name, description];
+      console.log('Products!!', products);
+
+      let promises = [];
 
       for (let i = 0; i < products.length; i++) {
+        console.log("LINE_TEMS/Entering for loop", line_items);
         const product = await stripe.products.create({
           name: products[i].name,
           description: products[i].description,
@@ -77,6 +87,7 @@ const resolvers = {
           quantity: 1,
         });
       }
+      console.log("LINE ITEMS", line_items);
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],

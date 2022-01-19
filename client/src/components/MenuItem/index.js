@@ -7,7 +7,7 @@ function MenuItem(menuItem) {
   const [state, dispatch] = useStoreContext();
 
   const { _id, itemName, itemPriceString, itemPriceFloat, category, description } = menuItem;
-  console.log("Menu Item", menuItem);
+  // console.log("Menu Item", menuItem);
   const { cart } = state;
 
   const addToCart = () => {
