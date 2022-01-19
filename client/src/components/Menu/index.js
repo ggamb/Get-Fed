@@ -12,7 +12,7 @@ function Menu() {
     fetch(`https://api.documenu.com/v2/restaurant/${id}/menuitems`, {
       "method": "GET",
       "headers": {
-        "x-api-key": "907bfc9a1fe3940e4a234c976264eb9f"
+        "x-api-key": "90465a99a13d1c344574ccc236501cf0"
       }
     })
       .then(response => response.json())
@@ -32,17 +32,17 @@ function Menu() {
 
   console.log(menuData);
 
-  /*<h1>Select your items:</h1>
-  {resturants.map((item) => (
-  <button
-    key={item._id}
-    onClick={() => {
-      handleClick(item._id);
-    }}
-  >
-    {item.name}
-  </button>
-))}*/
+//   /*<h1>Select your items:</h1>
+//   {resturants.map((item) => (
+//   <button
+//     key={item._id}
+//     onClick={() => {
+//       handleClick(item._id);
+//     }}
+//   >
+//     {item.name}
+//   </button>
+// ))}*/
 
   return (
     <>
@@ -55,7 +55,8 @@ function Menu() {
                 key={menuItem.item_id}
                 _id={menuItem.item_id}
                 itemName={menuItem.menu_item_name}
-                itemPrice={menuItem.menu_item_pricing[0].priceString}
+                itemPriceFloat = {menuItem.menu_item_price}
+                itemPriceString={menuItem.menu_item_pricing[0].priceString}
                 category={menuItem.subsection}
               />
             ))}

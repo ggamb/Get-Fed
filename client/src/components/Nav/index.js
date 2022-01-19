@@ -25,7 +25,7 @@ function Nav() {
       );
     } else {
       return (
-        <ul className="flex-row position-absolute top-0">
+        <ul className="flex-row position-relative top-0 end-0">
           <Button outline color="success" className="mx-1 signup">
             <Link to="/signup">
               Signup
@@ -46,12 +46,11 @@ function Nav() {
     <header className="flex-row px-1">
       <div className="header">
         <h1>
-          <nav>
-            
+          <nav>  
               <Link to="/" className="position-absolute top-0 start-50 translate-middle-x">
                   <img src= {logo} alt="" width="120" height="100"></img>
               </Link>   
-              <nav id="nav" className="button">
+              <nav id="nav" className="button ">
                 {showNavigation()}
                </nav>       
          
@@ -62,10 +61,6 @@ function Nav() {
         
         </h1>
       </div>
-      
-
-      {/* <div className="background"></div> */}
-
     </header>
   );
 }
