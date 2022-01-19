@@ -16,17 +16,5 @@
   },
   "devDependencies": {
     "concurrently": "^7.0.0"
-  },
-  "description": "## Table of Contents * [Description](#description) * [Installation](#installation) * [Usage](#usage) * [Contributing](#contributing) * [Tests](#tests) * [Questions](#questions)",
-  "dependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ggamb/team-cuisine-project-3.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ggamb/team-cuisine-project-3/issues"
-  },
-  "homepage": "https://github.com/ggamb/team-cuisine-project-3#readme"
+  }
 }
