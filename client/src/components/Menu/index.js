@@ -17,7 +17,6 @@ function Menu() {
     })
       .then(response => response.json())
       .then(menu => {
-        console.log('menu', menu.data)
         menu.data.forEach(menuItem => {
           sampleMenuData.push(menuItem);
         })
@@ -58,6 +57,7 @@ function Menu() {
                 itemPriceFloat = {menuItem.menu_item_price}
                 itemPriceString={menuItem.menu_item_pricing[0].priceString}
                 category={menuItem.subsection}
+                description = {menuItem.menu_item_description}
               />
             ))}
           </div>

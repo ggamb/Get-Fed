@@ -76,7 +76,7 @@ function RestaurantItem(restaurantDetail) {
           <ListGroup className="restaurant-list-group">
             <>
               {cuisines[0] !== '' ? (
-                <ListGroupItem>Cuisines: <br/>{cuisinesString}</ListGroupItem>
+                <ListGroupItem>Cuisine: <br/>{cuisinesString}</ListGroupItem>
               ) : null}
             </>
             {address ? (

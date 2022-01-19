@@ -161,6 +161,7 @@ input:focus {
 .mx-1 {
   margin-right: var(--spacing-one);
   margin-left: var(--spacing-one);
+  list-style-type: none;
 }
 
 .mx-2 {
