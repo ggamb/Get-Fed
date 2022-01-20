@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import RestaurantItem from '../RestaurantItem';
 // import { useStoreContext } from '../../utils/GlobalState';
-
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
 // import { idbPromise } from '../../utils/helpers';
 
 function RestaurantList() {
 
   /*let [restaurantsArray, setRestaurantsArray] = useState([{
     restaurant_name: 'OhZone', restaurant_phone: '(240) 844-1198', restaurant_website: 'http://www.misterdwash.wix.com/ohzonelounge-', hours: 'Mon-Thu: 10am-2am Fri-Sun: 10am-3am', price_range: '$', restaurant_id: 3890038376985698
-
   },
   {
     restaurant_name: 'Turning Natural', restaurant_phone: '(202) 800-8828', restaurant_website: 'http:///dc/washington/665098-turning-natural/', hours: '', price_range: '', restaurant_id: 3890038376985703
@@ -27,10 +27,10 @@ function RestaurantList() {
 
     let sampleRestaurantArray = [];
 
-   /*fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
+    fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
       "method": "GET",
       "headers": {
-        "x-api-key": "907bfc9a1fe3940e4a234c976264eb9f"
+        "x-api-key": "eea2475f26afbd017782a3ae1862adb7"
       }
     })
       .then(response => response.json())
@@ -43,7 +43,7 @@ function RestaurantList() {
       })
       .catch(err => {
         console.error(err);
-      }); */
+      });
   }
 
   function error(err) {
@@ -92,23 +92,33 @@ function RestaurantList() {
   /**/
 
   return (
+    
     <div className="my-2">
-      <h2>Our Restaurant:</h2>
+      
+      <h2>Choose from the following restaurants near you!</h2>
       {restaurantsArray.length ? (
-        <div className="flex-row">
+        <div className='flex-row'>
           {restaurantsArray.map(restaurant => (
-            <RestaurantItem
+             <RestaurantItem
               key={restaurant.restaurant_id}
               _id={restaurant.restaurant_id}
+              address={restaurant.address.formatted}
               restaurant_name={restaurant.restaurant_name}
               price_range={restaurant.price_range}
+              cuisines = {restaurant.cuisines}
+              hours = {restaurant.hours}
+              phoneNumber = {restaurant.restaurant_phone}
+              website = {restaurant.restaurant_website}
             />
           ))}
-        </div>
+       </div>
       ) : (
         <h3>Please turn on geolocation or use the search bar above!</h3>
       )}
     </div>
+   
+    
+    
   );
 }
 

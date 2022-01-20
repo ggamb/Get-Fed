@@ -16,14 +16,14 @@ function Navbar() {
           <Link to="/"> Home </Link>
         
           <Link to="/Login"> Login </Link>
-          <Link to="/cart"> Cart🛒 </Link>
+          
         </div>
       </div>
         <div className="rightSide">
         <Link to="/"> Home </Link>
         
         <Link to="/Login"> Login </Link>
-        <Link to="/cart"> Cart🛒 </Link>
+        
       </div>
       </div>
      

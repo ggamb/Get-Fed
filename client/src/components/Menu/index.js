@@ -12,12 +12,11 @@ function Menu() {
     fetch(`https://api.documenu.com/v2/restaurant/${id}/menuitems`, {
       "method": "GET",
       "headers": {
-        "x-api-key": "907bfc9a1fe3940e4a234c976264eb9f"
+        "x-api-key": "eea2475f26afbd017782a3ae1862adb7"
       }
     })
       .then(response => response.json())
       .then(menu => {
-        console.log('menu', menu.data)
         menu.data.forEach(menuItem => {
           sampleMenuData.push(menuItem);
         })
@@ -55,8 +54,10 @@ function Menu() {
                 key={menuItem.item_id}
                 _id={menuItem.item_id}
                 itemName={menuItem.menu_item_name}
-                itemPrice={menuItem.menu_item_pricing[0].priceString}
+                itemPriceFloat = {menuItem.menu_item_price}
+                itemPriceString={menuItem.menu_item_pricing[0].priceString}
                 category={menuItem.subsection}
+                description = {menuItem.menu_item_description}
               />
             ))}
           </div>

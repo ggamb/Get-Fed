@@ -10,15 +10,17 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
-import Nav from './components/Nav/Navbar'; 
+import Nav from './components/Nav/Navbar';
+import Footer from './components/Footer/footer';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+//import RestaurantList from './components/resturant-list';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { StoreProvider } from './utils/GlobalState';
-import Menu from './components/Menu';
-import Footer from './components/footer/Footer';
-
+import Menu from './components/Menu'
+import Cart from './components/Cart';
+import OrderHistory from './pages/OrderHistory';
 
 
 const httpLink = createHttpLink({
@@ -43,27 +45,26 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      
+      <Router>
         <div>
-        <Router>
-            <Nav/>
+          <StoreProvider>
+            <Nav />
+            <Cart/>
             
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/restaurant/:id" component={Menu} />
-
-        
+              <Route exact path="/orderHistory" component={OrderHistory} />
+              <Route component={NoMatch} />
             </Switch>
-        <Footer/>
-            </Router>
-        
+            <Footer/>
+          </StoreProvider>
         </div>
-     
+      </Router>
     </ApolloProvider>
   );
 }
-
 
 export default App;
