@@ -31,7 +31,7 @@ function RestaurantList() {
     fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
       "method": "GET",
       "headers": {
-        "x-api-key": "90465a99a13d1c344574ccc236501cf0"
+        "x-api-key": "c549b579cc13be11b832883ffe080a17"
       }
     })
       .then(response => response.json())
@@ -93,17 +93,21 @@ function RestaurantList() {
   /**/
 
   return (
-    <div className="jumbo">
-      <h2>Our Restaurant:</h2>
+    <div className="my-2">
+      <h2>Choose from the following restaurants near you!</h2>
       {restaurantsArray.length ? (
         <div className='flex-row'>
           {restaurantsArray.map(restaurant => (
              <RestaurantItem
               key={restaurant.restaurant_id}
               _id={restaurant.restaurant_id}
-              
+              address={restaurant.address.formatted}
               restaurant_name={restaurant.restaurant_name}
               price_range={restaurant.price_range}
+              cuisines = {restaurant.cuisines}
+              hours = {restaurant.hours}
+              phoneNumber = {restaurant.restaurant_phone}
+              website = {restaurant.restaurant_website}
             />
           ))}
        </div>

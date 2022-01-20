@@ -46,10 +46,12 @@ h1 {
 
 h2 {
   font-size: 2rem;
+  text-align: center;
 }
 
 h3 {
   font-size: 1.75rem;
+  text-align: center;
 }
 
 h4 {
@@ -79,12 +81,16 @@ a:hover {
   text-decoration: underline;
 }
 
+.navHeader {
+  list-style: none;
+}
+
 header {
   background: var(--primary);
   background-image: url('./utils/images/photo_logo.png');
   background-attachment: fixed;
   position: sticky; 
-  background-size: cover;
+  background-size: 100%;
 }
 
 header a {
@@ -204,6 +210,16 @@ input:focus {
   text-align: center;
 }
 
+.restaurant-list-group{
+  position: relative;
+  display: block;
+  color: #212529;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  text-align: left;
+}
+
 .error-text {
   color: var(--error);
 }
@@ -254,7 +270,12 @@ a:-webkit-any-link {
 .hero {
   background-image: url('./utils/images/photo_logo.png');
   background-attachment: fixed;
-  position: sticky; 
-  background-size: cover
+  background-size: 100%;
+  margin-bottom: 120px;
+  background-repeat: no-repeat;
 
+}
+
+.card-title a {
+  color: green;
 }
