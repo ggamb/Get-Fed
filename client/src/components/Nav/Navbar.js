@@ -1,12 +1,57 @@
-import React from "react";
-import Auth from "../../utils/auth";
-//import Logo from "../assets/images/Logo.png";
+//sai
+import { style } from '@mui/system';
+import React from 'react';
 import { Link } from "react-router-dom";
 
 
 
-function Nav() {
-  function showNavigation() {
+function Navbar() {
+  return (
+    <div className="navbar">
+      
+      <div className="leftSide">
+      <p>Get Fed 🍔 </p>
+      <div className="hiddenLinks">
+      
+          <Link to="/"> Home </Link>
+        
+          <Link to="/Login"> Login </Link>
+          <Link to="/cart"> Cart🛒 </Link>
+        </div>
+      </div>
+        <div className="rightSide">
+        <Link to="/"> Home </Link>
+        
+        <Link to="/Login"> Login </Link>
+        <Link to="/cart"> Cart🛒 </Link>
+      </div>
+      </div>
+     
+     
+      
+    )
+}
+
+export default Navbar
+
+
+
+
+
+
+/*import React, { useState } from "react";*/
+
+      /*import React from "react";*/
+
+/*import Auth from "../../utils/auth";*/
+       /*import Logo from "../assets/images/Logo.png";*/
+/*import { Link } from "react-router-dom"; 8/
+
+
+/*function Nav() {
+
+  
+ function showNavigation() {
     if (Auth.loggedIn()) {
       return (
         <ul className="flex-row">
@@ -16,7 +61,7 @@ function Nav() {
             </Link>
           </li>
           <li className="mx-1">
-            {/* this is not using the Link component to logout or user and then refresh the application to the start */}
+           
             <a href="/" onClick={() => Auth.logout()} >
               Logout
             </a>
@@ -73,4 +118,4 @@ function Nav() {
   );
 };
 
-export default Nav;
+export default Nav;*/
