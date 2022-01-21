@@ -14,6 +14,8 @@ const server = new ApolloServer({
   context: authMiddleware
 });
 
+console.log(process.env.REACT_APP_API_URL)
+
 server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: false }));
