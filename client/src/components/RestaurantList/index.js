@@ -4,7 +4,8 @@ import RestaurantItem from '../RestaurantItem';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
 // import { idbPromise } from '../../utils/helpers';
-import env from "react-dotenv";
+//import env from "react-dotenv";
+import 'dotenv/config'
 
 function RestaurantList() {
 
@@ -18,6 +19,8 @@ function RestaurantList() {
 
   let [restaurantsArray, setRestaurantsArray] = useState([]);
 
+  console.log(process.env)
+
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -29,10 +32,10 @@ function RestaurantList() {
 
     let sampleRestaurantArray = [];
 
-    fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
+    /*fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
       "method": "GET",
       "headers": {
-        "x-api-key": window.env.API_URL
+        "x-api-key": env.API_URL
       }
     })
       .then(response => response.json())
@@ -45,7 +48,7 @@ function RestaurantList() {
       })
       .catch(err => {
         console.error(err);
-      });
+      });*/
   }
 
   function error(err) {

@@ -18,9 +18,12 @@
     "concurrently": "^7.0.0"
   },
   "dependencies": {
+    "dotenv": "^14.2.0",
     "react-dotenv": "^0.1.3"
   },
   "react-dotenv": {
-    "whitelist": ["API_URL"]
+    "whitelist": [
+      "API_URL"
+    ]
   }
 }
