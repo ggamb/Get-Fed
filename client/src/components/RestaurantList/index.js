@@ -4,6 +4,7 @@ import RestaurantItem from '../RestaurantItem';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
 // import { idbPromise } from '../../utils/helpers';
+import env from "react-dotenv";
 
 function RestaurantList() {
 
@@ -31,7 +32,7 @@ function RestaurantList() {
     fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
       "method": "GET",
       "headers": {
-        "x-api-key": "1f00f8bbe4a1ee9522f0cb87e15b93d6"
+        "x-api-key": window.env.API_URL
       }
     })
       .then(response => response.json())
