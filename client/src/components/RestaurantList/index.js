@@ -7,15 +7,15 @@ import { Card, CardImg, CardText, CardBody,
 
 function RestaurantList() {
 
-  /*let [restaurantsArray, setRestaurantsArray] = useState([{
-    restaurant_name: 'OhZone', restaurant_phone: '(240) 844-1198', restaurant_website: 'http://www.misterdwash.wix.com/ohzonelounge-', hours: 'Mon-Thu: 10am-2am Fri-Sun: 10am-3am', price_range: '$', restaurant_id: 3890038376985698
+  let [restaurantsArray, setRestaurantsArray] = useState([{
+    restaurant_name: 'OhZone', restaurant_phone: '(240) 844-1198', restaurant_website: 'http://www.misterdwash.wix.com/ohzonelounge-', hours: 'Mon-Thu: 10am-2am Fri-Sun: 10am-3am', price_range: '$', restaurant_id: 3890038376985698, cuisines: ['Bar Food']
 
   },
   {
-    restaurant_name: 'Turning Natural', restaurant_phone: '(202) 800-8828', restaurant_website: 'http:///dc/washington/665098-turning-natural/', hours: '', price_range: '', restaurant_id: 3890038376985703
-  }]);*/
+    restaurant_name: 'Turning Natural', restaurant_phone: '(202) 800-8828', restaurant_website: 'http:///dc/washington/665098-turning-natural/', hours: '', price_range: '', restaurant_id: 3890038376985703, cuisines: ['American']
+  }]);
 
-  let [restaurantsArray, setRestaurantsArray] = useState([]);
+  //let [restaurantsArray, setRestaurantsArray] = useState([]);
 
   const apiKey = process.env.REACT_APP_API;
 
@@ -30,7 +30,7 @@ function RestaurantList() {
 
     let sampleRestaurantArray = [];
 
-    fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
+    /*fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
       "method": "GET",
       "headers": {
         "x-api-key": apiKey
@@ -46,7 +46,7 @@ function RestaurantList() {
       })
       .catch(err => {
         console.error(err);
-      });
+      });*/
   }
 
   function error(err) {
@@ -103,7 +103,7 @@ function RestaurantList() {
              <RestaurantItem
               key={restaurant.restaurant_id}
               _id={restaurant.restaurant_id}
-              address={restaurant.address.formatted}
+              //address={restaurant.address.formatted}
               restaurant_name={restaurant.restaurant_name}
               price_range={restaurant.price_range}
               cuisines = {restaurant.cuisines}

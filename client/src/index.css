@@ -199,9 +199,22 @@ input:focus {
   padding-bottom: var(--spacing-two);
 }
 
+.card-style {
+  margin: 5px 5px;
+}
+
 .card {
   width: 25%;
   text-align: center;
+}
+
+.restaurant-link {
+  text-decoration: none;
+}
+
+.restaurant-header {
+  font-weight: 500;
+  margin: 5px 0;
 }
 
 .restaurant-list-group{
@@ -212,6 +225,16 @@ input:focus {
   background-color: #fff;
   border: 1px solid rgba(0,0,0,.125);
   text-align: left;
+}
+
+.menu-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.last-menu-item {
+  padding: 0 0 10px 0;
 }
 
 .error-text {

@@ -2,13 +2,25 @@ import React from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap'
 
 function MenuItem(menuItem) {
   const [state, dispatch] = useStoreContext();
 
-  const { _id, itemName, itemPriceString, itemPriceFloat, category, description } = menuItem;
+  const { _id, itemName, itemPriceString, itemPriceFloat, category } = menuItem;
   console.log("Menu Item", menuItem);
   const { cart } = state;
+
+  let {description} = menuItem;
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  description = capitalizeFirstLetter(description);
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
@@ -30,19 +42,35 @@ function MenuItem(menuItem) {
       // idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
   }
-  
-    return (
-      <div className="card px-1 py-1">
-        <div>
-          <p>{itemName}</p>
-          <p>{description}</p>
+
+  return (
+    <>
+      <Card color="light" className="card-style">
+        <CardBody>
+          <CardTitle tag='h5'>
+            {itemName}
+          </CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">
+            {category ? (
+              <>{category}</>
+            ) : null}
+          </CardSubtitle>
           <p>{itemPriceString}</p>
-          <p>{category}</p>
-        </div>
-        <button onClick={addToCart}>Add to cart</button>
-      </div>
-    );
-   };
- 
+          <p className="last-menu-item">{description}</p>
+        </CardBody>
+        <Button
+            className="menu-button"
+            active
+            block
+            color="primary"
+            size="sm"
+            onClick={addToCart}>
+            Add to order
+          </Button>
+      </Card>
+    </>
+  );
+};
+
 
 export default MenuItem;

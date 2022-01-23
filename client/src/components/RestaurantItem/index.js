@@ -27,15 +27,15 @@ function RestaurantItem(restaurantDetail) {
   let cuisinesString = '';
 
   if (cuisines[0] !== '') {
-    for(let i = 0; i < cuisines.length; i++) {
-      if(i< cuisines.length-1) {
+    for (let i = 0; i < cuisines.length; i++) {
+      if (i < cuisines.length - 1) {
         cuisinesString += cuisines[i] + ", ";
       } else {
         cuisinesString += cuisines[i];
       }
     }
   }
-  
+
   function isValidURL(string) {
     var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
     return (res !== null)
@@ -66,25 +66,26 @@ function RestaurantItem(restaurantDetail) {
 
   return (
     <>
-      <Card>
+      <Card color="light" className="card-style">
         <CardBody>
-          <CardTitle>
-            <Link to={`/restaurant/${_id}`}>
+          <CardTitle tag='h5'>
+            <Link className="restaurant-link" to={`/restaurant/${_id}`}>
               {restaurant_name}
             </Link>
           </CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">
+            {cuisines[0] !== '' ? (
+              <>Cuisine: {cuisinesString}</>
+            ) : null}
+          </CardSubtitle>
           <ListGroup className="restaurant-list-group">
-            <>
-              {cuisines[0] !== '' ? (
-                <ListGroupItem>Cuisine: <br/>{cuisinesString}</ListGroupItem>
-              ) : null}
-            </>
+
             {address ? (
-              <ListGroupItem>Address: <br />{address}</ListGroupItem>
+              <ListGroupItem><p className="restaurant-header">Address:</p> {address}</ListGroupItem>
             ) : null}
 
             {phoneNumber ? (
-              <ListGroupItem>Number: <br />{phoneNumber}</ListGroupItem>
+              <ListGroupItem><p className="restaurant-header">Number:</p>{phoneNumber}</ListGroupItem>
             ) : null}
 
             {website && isValidURL(website) ? (
@@ -92,11 +93,11 @@ function RestaurantItem(restaurantDetail) {
             ) : null}
 
             {hours ? (
-              <ListGroupItem>Hours: <br />{hours}</ListGroupItem>
+              <ListGroupItem><p className="restaurant-header">Hours:</p>{hours}</ListGroupItem>
             ) : null}
 
             {price_range ? (
-              <ListGroupItem>Price: {price_range}</ListGroupItem>
+              <ListGroupItem><p className="restaurant-header">Price:</p> {price_range}</ListGroupItem>
             ) : null}
           </ListGroup>
         </CardBody>
