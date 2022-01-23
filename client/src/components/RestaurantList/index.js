@@ -96,8 +96,12 @@ function RestaurantList() {
   function handleClick() {
     searchText = textInput.current.value;
 
+    textInput.current.value = '';
+
     if (isNaN(searchText)) {
       //Search is a string so assumed to be a search for a state
+
+      //Passes search text to function to change state name to abbreviation for API fetch
       let stateCode = abbrState(searchText, 'abbr');
 
       fetch(`https://api.documenu.com/v2/restaurants/state/${stateCode}?size=30&page=1&fullmenu=true`, {
@@ -120,7 +124,6 @@ function RestaurantList() {
 
     } else {
       //Search is an int so assumed to be a search by zip code
-      console.log(searchText);
 
       fetch(`https://api.documenu.com/v2/restaurants/zip_code/${searchText}?size=30&page=1&fullmenu=true`, {
         "method": "GET",
