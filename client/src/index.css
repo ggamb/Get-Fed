@@ -91,6 +91,11 @@ header a {
   color: var(--light);
 }
 
+#searchBar {
+  min-width: 200px;
+  margin: 10px 10px 0 0;
+}
+
 button {
   font-size: 1rem;
   text-decoration: none;

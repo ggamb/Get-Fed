@@ -144,8 +144,6 @@ function RestaurantList() {
 
   }
 
-
-
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -223,10 +221,10 @@ function RestaurantList() {
     <>
       <div>
         <input id="searchBar" type="text" placeholder="Search by zipcode or state" ref={textInput}></input>
-        <Button onClick={handleClick}>Search</Button>
+        <Button color='primary' size='sm' onClick={handleClick}>Search</Button>
       </div>
       <div className="my-2">
-        <h2>Choose from the following restaurants near you!</h2>
+        <h2>Choose from the following restaurants!</h2>
         {restaurantsArray.length ? (
           <div className='flex-row'>
             {restaurantsArray.map(restaurant => (
