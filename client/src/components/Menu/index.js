@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import MenuItem from '../MenuItem'
+import MenuItem from '../MenuItem';
+//const SerpApi = require('google-search-results-nodejs');
 
 function Menu() {
 
@@ -11,10 +12,30 @@ function Menu() {
     }
   ]);*/
 
-  //let [menuData, setMenuData] = useState([]);
+  let [menuData, setMenuData] = useState([]);
   const { id } = useParams();
 
   const apiKey = process.env.REACT_APP_API;
+  /*const apiKeySerp = process.env.REACT_APP_API;
+
+  
+  const search = new SerpApi.GoogleSearch("b78a1d75b082660c7c538190b9d3dd0ea2b77c2b720cf62bb310fce36a72c70b");
+
+  const params = {
+    engine: "google",
+    q: "draft beer",
+    google_domain: "google.com",
+    gl: "us",
+    hl: "en",
+    tbm: "isch",
+    safe: "active"
+
+  const callback = function (data) {
+    console.log(data);
+  };
+
+  // Show result as JSON
+  search.json(params, callback);*/
 
   useEffect(() => {
     let sampleMenuData = [];
@@ -38,6 +59,7 @@ function Menu() {
         console.error(err);
       });
   }, []);
+
 
   console.log(menuData);
 

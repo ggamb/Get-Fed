@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
@@ -11,10 +11,10 @@ function MenuItem(menuItem) {
   const [state, dispatch] = useStoreContext();
 
   const { _id, itemName, itemPriceString, itemPriceFloat, category } = menuItem;
+  let { description } = menuItem;
   console.log("Menu Item", menuItem);
   const { cart } = state;
 
-  let {description} = menuItem;
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -55,18 +55,20 @@ function MenuItem(menuItem) {
               <>{category}</>
             ) : null}
           </CardSubtitle>
-          <p>{itemPriceString}</p>
-          <p className="last-menu-item">{description}</p>
+          <CardText>
+            <p>{itemPriceString}</p>
+            <p className="last-menu-item">{description}</p>
+          </CardText>
         </CardBody>
         <Button
-            className="menu-button"
-            active
-            block
-            color="primary"
-            size="sm"
-            onClick={addToCart}>
-            Add to order
-          </Button>
+          className="menu-button"
+          active
+          block
+          color="primary"
+          size="sm"
+          onClick={addToCart}>
+          Add to order
+        </Button>
       </Card>
     </>
   );
