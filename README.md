@@ -17,9 +17,9 @@ Features to be implemented:
 
 *Full Stripe API functionality to add credit card information
 
-*Search bar to find restaurants and menus in other locations
-
 *Order history page so users can see previously purchased items
+
+*Images displayed over menu items depending on type of item
 
 
 ## Installation
@@ -30,7 +30,7 @@ Alternatively, if you would like to use this code, feel free to clone the code, 
 ## Usage
 Click the link above and you will be directed to Get Fed, which will look something like this: 
 
-![screencapture-get-fed-project-herokuapp-2022-01-20-12_30_26 (2)](https://user-images.githubusercontent.com/86434738/150391248-24fe7e6e-d7bf-44dd-8f19-f3ad66d7c1a7.jpg)
+![screencapture-localhost-3000-2022-01-23-13_49_33 (2)](https://user-images.githubusercontent.com/86434738/150693352-8c33a7ea-1d30-4c80-91cf-a8fabb7e3a03.jpg)
 
 
 ## License
