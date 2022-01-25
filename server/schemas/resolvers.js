@@ -54,21 +54,27 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
+      //const order = new Order({ products: args.products });
       const line_items = [];
 
-      const { products } = await order.populate("products").execPopulate();
+      //const { products } = await order.populate("products").execPopulate();
 
-      for (let i = 0; i < products.length; i++) {
+      //const products = products;
+      
+      //console.log('ORDER', order)
+      //console.log("PRODUCTS PASSED", products)
+
+      //for (let i = 0; i < products.length; i++) {
+        console.log('we are here')
         const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
+          name: args.name,
+          description: args.description,
          
         });
 
         const price = await stripe.prices.create({
           product: product.id,
-          unit_amount: products[i].price * 100,
+          unit_amount: args.price * 100,
           currency: "usd",
         });
 
@@ -76,7 +82,7 @@ const resolvers = {
           price: price.id,
           quantity: 1,
         });
-      }
+      //}
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],

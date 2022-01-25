@@ -46,15 +46,25 @@ const Cart = () => {
   }
 
   function submitCheckout() {
-    const productIds = [];
+    //const productIds = [];
+
+    const cartItems = state.cart;
+
     getCheckout({
-      variables: { products: productIds },
+      variables: { 
+        name: cartItems[0].itemName,
+        price: cartItems[0].itemPriceFloat,
+        description: cartItems[0].description
+       },
     });
-    state.cart.forEach((item) => {
+
+    /*state.cart.forEach((item) => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
         productIds.push(item._id);
       }
-    });
+    });*/
+
+    //console.log(productIds)
   }
 
   if (!state.cartOpen) {

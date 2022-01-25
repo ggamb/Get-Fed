@@ -30,3 +30,14 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const ADD_PRODUCT = gql`
+mutation addProduct($name: String!, $price: Float!, $category: ID, $description: String!, $quantity:Int ) {
+  addProduct(name: $name, price: $price, category: $ category, description: $description, quantity: $quantity) {
+    _id
+    name
+    price
+    description
+  }
+}
+`;

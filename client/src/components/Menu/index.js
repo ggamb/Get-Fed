@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import MenuItem from '../MenuItem';
+import { ADD_PRODUCT } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
+
 //const SerpApi = require('google-search-results-nodejs');
 
 function Menu() {
 
+  //Sample data for use if key not working
   /*let [menuData, setMenuData] = useState([
     { _id: '2797408369084165701', menu_item_name: '6 Point', menu_item_price: 3.5, itemPriceString: '$3.50', subsection: 'Draft Beer', menu_item_description: 'A beer' },
     {
@@ -12,30 +16,15 @@ function Menu() {
     }
   ]);*/
 
+  //State setter used to display menu data
   let [menuData, setMenuData] = useState([]);
   const { id } = useParams();
 
   const apiKey = process.env.REACT_APP_API;
-  /*const apiKeySerp = process.env.REACT_APP_API;
 
-  
-  const search = new SerpApi.GoogleSearch("b78a1d75b082660c7c538190b9d3dd0ea2b77c2b720cf62bb310fce36a72c70b");
+  //GraphQL mutation to add products to databased
+  const [addProduct, {data, loading, error}] = useMutation(ADD_PRODUCT);
 
-  const params = {
-    engine: "google",
-    q: "draft beer",
-    google_domain: "google.com",
-    gl: "us",
-    hl: "en",
-    tbm: "isch",
-    safe: "active"
-
-  const callback = function (data) {
-    console.log(data);
-  };
-
-  // Show result as JSON
-  search.json(params, callback);*/
 
   useEffect(() => {
     let sampleMenuData = [];
@@ -49,7 +38,17 @@ function Menu() {
       .then(response => response.json())
       .then(menu => {
         menu.data.forEach(menuItem => {
+          //Adds all menu items to sampleMenuData array to be used in setter below
           sampleMenuData.push(menuItem);
+
+          //Adds all products to database based on graphQL mutation
+          addProduct({
+            variables: { 
+              name: menuItem.menu_item_name,
+              price: menuItem.menu_item_price,
+              description: menuItem.menu_item_description
+             }
+          })
         })
 
         setMenuData(sampleMenuData);

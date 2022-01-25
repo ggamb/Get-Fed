@@ -44,7 +44,7 @@ const typeDefs = gql`
     order(_id: ID): Order
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
-    checkout(products: [ID]!): Checkout
+    checkout(name: String!, price: Float!, description: String): Checkout
   }
 
   type Mutation {
@@ -59,7 +59,7 @@ const typeDefs = gql`
     updateProduct(_id: ID!, quantity: Int!): Product
     addProduct(
       name: String!
-      price: Int!
+      price: Float
       category: ID
       description: String
       quantity: Int
