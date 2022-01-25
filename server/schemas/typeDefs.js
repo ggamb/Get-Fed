@@ -38,13 +38,21 @@ const typeDefs = gql`
     products: [Product]
   }
 
+  input ProductInput {
+    _id: ID
+    itemName: String!
+    itemPriceFloat: Float!
+    quantity: Int
+    description: String
+  }
+
   type Query {
     user: User
     users: [User]
     order(_id: ID): Order
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
-    checkout(name: String!, price: Float!, description: String): Checkout
+    checkout(product: [ProductInput]): Checkout
   }
 
   type Mutation {

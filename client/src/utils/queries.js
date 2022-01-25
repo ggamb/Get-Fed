@@ -17,8 +17,8 @@ export const QUERY_PRODUCTS = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($name: String!, $price: Float!, $description: String) {
-    checkout(name: $name, price: $price, description: $description) {
+  query getCheckout($product: [ProductInput]) {
+    checkout(product: $product) {
       session
     }
   }

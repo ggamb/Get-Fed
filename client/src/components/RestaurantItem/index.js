@@ -11,8 +11,8 @@ import {
 
 
 function RestaurantItem(restaurantDetail) {
-  // const [state, dispatch] = useStoreContext();
 
+  //Destructures data from restaurantDetail param
   const {
     restaurant_name,
     _id,
@@ -24,8 +24,9 @@ function RestaurantItem(restaurantDetail) {
     website
   } = restaurantDetail;
 
+  //Adds commas to cuisines to be displayed
   let cuisinesString = '';
-
+  
   if (cuisines[0] !== '') {
     for (let i = 0; i < cuisines.length; i++) {
       if (i < cuisines.length - 1) {
@@ -36,6 +37,7 @@ function RestaurantItem(restaurantDetail) {
     }
   }
 
+  //Some API website data is not valid. Regex below ensures that URL is valid for display on webpage
   function isValidURL(string) {
     var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
     return (res !== null)

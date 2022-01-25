@@ -46,25 +46,25 @@ const Cart = () => {
   }
 
   function submitCheckout() {
-    //const productIds = [];
+    const cartItems = [];
 
-    const cartItems = state.cart;
-
+    //Uses get checkout query to send cart items to Stripe API checkout
     getCheckout({
-      variables: { 
-        name: cartItems[0].itemName,
-        price: cartItems[0].itemPriceFloat,
-        description: cartItems[0].description
-       },
+      variables: { product: cartItems },
     });
 
-    /*state.cart.forEach((item) => {
+    //Interates through items in state.cart and adds them to array to be sent to Stripe API checkout
+    //itemName, itemPriceFloat, description used in graphQL query
+    //If item description = '', it is set to 'No description' to prevent graphQL errors
+    state.cart.forEach((item) => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
-        productIds.push(item._id);
+        cartItems.push({
+          itemName: item.itemName,
+          itemPriceFloat: item.itemPriceFloat,
+          description: item.description || 'No description'
+        })
       }
-    });*/
-
-    //console.log(productIds)
+    });
   }
 
   if (!state.cartOpen) {

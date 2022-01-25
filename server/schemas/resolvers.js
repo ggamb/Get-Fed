@@ -1,6 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const { User, Order, Product } = require("../models");
+//Test stripe key, not sensitive
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
@@ -54,27 +55,22 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      //const order = new Order({ products: args.products });
       const line_items = [];
 
-      //const { products } = await order.populate("products").execPopulate();
+      //Takes in products from args parameter to be used below in loop
+      const productsArray = args.product;
 
-      //const products = products;
-      
-      //console.log('ORDER', order)
-      //console.log("PRODUCTS PASSED", products)
-
-      //for (let i = 0; i < products.length; i++) {
-        console.log('we are here')
+      for (let i = 0; i < productsArray.length; i++) {
+        //Creates stripe products
         const product = await stripe.products.create({
-          name: args.name,
-          description: args.description,
-         
+          name: productsArray[i].itemName,
+          description: productsArray[i].description,
         });
 
+        //Creates stripe prices
         const price = await stripe.prices.create({
           product: product.id,
-          unit_amount: args.price * 100,
+          unit_amount: productsArray[i].itemPriceFloat * 100,
           currency: "usd",
         });
 
@@ -82,8 +78,9 @@ const resolvers = {
           price: price.id,
           quantity: 1,
         });
-      //}
+      }
 
+      //Creates Stripe session and directs to correct URL
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         line_items,
@@ -126,7 +123,6 @@ const resolvers = {
       return { token, user };
     },
     addOrder: async (parent, { products }, context) => {
-      console.log(context);
       if (context.user) {
         const order = new Order({ products });
 

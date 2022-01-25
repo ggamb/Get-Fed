@@ -20,6 +20,7 @@ function Menu() {
   let [menuData, setMenuData] = useState([]);
   const { id } = useParams();
 
+  //API key in .env in root of client folder
   const apiKey = process.env.REACT_APP_API;
 
   //GraphQL mutation to add products to databased
