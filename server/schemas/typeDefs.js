@@ -6,6 +6,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    address: String
     orders: [Order]
   }
 
@@ -60,6 +61,7 @@ const typeDefs = gql`
       firstName: String!
       lastName: String!
       email: String!
+      address: String!
       password: String!
     ): Auth
     login(email: String!, password: String!): Auth

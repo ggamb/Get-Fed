@@ -14,6 +14,7 @@ function Signup(props) {
       variables: {
         email: formState.email,
         password: formState.password,
+        address: formState.address,
         firstName: formState.firstName,
         lastName: formState.lastName,
       },
@@ -53,6 +54,16 @@ function Signup(props) {
             name="lastName"
             type="lastName"
             id="lastName"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="address">Address:</label>
+          <input
+            placeholder="742 Evergreen Terrace"
+            name="address"
+            type="address"
+            id="address"
             onChange={handleChange}
           />
         </div>
