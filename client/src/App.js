@@ -20,6 +20,7 @@ import Menu from './components/Menu'
 import Cart from './components/Cart';
 import OrderHistory from './pages/OrderHistory';
 import Success from './pages/Success';
+import Auth from './utils/auth'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -47,14 +48,18 @@ function App() {
         <div>
           <StoreProvider>
             <Nav />
-            <Cart/>
+
+            {Auth.loggedIn() && (
+              <Cart />
+            )}
+
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/restaurant/:id" component={Menu} />
               <Route exact path="/orderHistory" component={OrderHistory} />
-              <Route  exact path="/success" component={Success} />
+              <Route exact path="/success" component={Success} />
               <Route component={NoMatch} />
             </Switch>
           </StoreProvider>

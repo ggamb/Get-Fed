@@ -5,7 +5,8 @@ import { idbPromise } from "../../utils/helpers";
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
-} from 'reactstrap'
+} from 'reactstrap';
+import Auth from "../../utils/auth";
 
 function MenuItem(menuItem) {
   const [state, dispatch] = useStoreContext();
@@ -60,15 +61,26 @@ function MenuItem(menuItem) {
             <p className="last-menu-item">{description}</p>
           </CardText>
         </CardBody>
-        <Button
-          className="menu-button"
-          active
-          block
-          color="primary"
-          size="sm"
-          onClick={addToCart}>
-          Add to order
-        </Button>
+
+        {Auth.loggedIn() ? (
+          <Button
+            className="menu-button"
+            active
+            block
+            color="primary"
+            size="sm"
+            onClick={addToCart}>
+            Add to order
+          </Button>
+        ) :
+          <Button
+            block
+            color="warning"
+            size="sm">
+            Sign in to purchase!
+          </Button>
+        }
+
       </Card>
     </>
   );
