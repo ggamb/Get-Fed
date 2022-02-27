@@ -155,6 +155,10 @@ input:focus {
   flex-wrap: wrap;
 }
 
+.center-content {
+  justify-content: center;
+}
+
 .space-between {
   justify-content: space-between;
 }
@@ -236,6 +240,25 @@ input:focus {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.now-viewing {
+  font-weight: bolder;
+  font-size: 32px;
+}
+
+#map {
+  height: 400px;
+  width: 50%;
+  margin: auto;
+}
+
+.box-border {
+  border: 2px solid black;
+  width: fit-content;
+  padding: 0 5px;
+  margin: 0 5px;
+  margin: 0 auto;
 }
 
 .last-menu-item {

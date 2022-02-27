@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 
 
+
 function RestaurantItem(restaurantDetail) {
 
   //Destructures data from restaurantDetail param
@@ -26,7 +27,7 @@ function RestaurantItem(restaurantDetail) {
 
   //Adds commas to cuisines to be displayed
   let cuisinesString = '';
-  
+
   if (cuisines[0] !== '') {
     for (let i = 0; i < cuisines.length; i++) {
       if (i < cuisines.length - 1) {
@@ -71,7 +72,20 @@ function RestaurantItem(restaurantDetail) {
       <Card color="light" className="card-style">
         <CardBody>
           <CardTitle tag='h5'>
-            <Link className="restaurant-link" to={`/restaurant/${_id}`}>
+            <Link
+              className="restaurant-link"
+              to={{
+                pathname: `/restaurant/${_id}`,
+                state:
+                {
+                  name: restaurant_name,
+                  priceRange: price_range,
+                  address,
+                  hours,
+                  phoneNumber,
+                  website
+                }
+              }} >
               {restaurant_name}
             </Link>
           </CardTitle>

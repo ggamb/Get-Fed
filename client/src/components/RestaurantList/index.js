@@ -229,7 +229,7 @@ function RestaurantList() {
       <div className="my-2">
         <h2>Choose from the following restaurants!</h2>
         {restaurantsArray.length ? (
-          <div className='flex-row'>
+          <div className='flex-row center-content'>
             {restaurantsArray.map(restaurant => (
               <RestaurantItem
                 key={restaurant.restaurant_id}

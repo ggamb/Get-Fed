@@ -13,7 +13,7 @@ function MenuItem(menuItem) {
 
   const { _id, itemName, itemPriceString, itemPriceFloat, category } = menuItem;
   let { description } = menuItem;
-  console.log("Menu Item", menuItem);
+  //console.log("Menu Item", menuItem);
   const { cart } = state;
 
 
@@ -77,7 +77,7 @@ function MenuItem(menuItem) {
             block
             color="warning"
             size="sm">
-            Sign in to purchase!
+            Sign in to add to cart!
           </Button>
         }
 
