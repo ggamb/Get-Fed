@@ -13,7 +13,7 @@ Get Fed is an Uber Eats clone where users can find restaurants near them, search
 
 Get Fed leverages the publicly available [Documenu API](https://documenu.com/) to find restaurants near you, provide information about restaurants including name, cuisine, phone number, website, hours of operation, and price range ($-$$$$). Clicking on a restaurant will show the restaurant's menu also provided by Documenu.
 
-This application also allows for fully functional checkout using [Stipe API](https://stripe.com/docs). To checkout use 42424242424242 as your credit card number and you will be redirected to the home page.
+This application also allows for fully functional checkout using [Stripe API](https://stripe.com/docs). To checkout use 42424242424242 as your credit card number and you will be redirected to the home page.
 
 Features to be implemented:
 
