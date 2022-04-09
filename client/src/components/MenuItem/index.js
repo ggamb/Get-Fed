@@ -7,6 +7,7 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import Auth from "../../utils/auth";
+import { Link } from "react-router-dom";
 
 function MenuItem(menuItem) {
   const [state, dispatch] = useStoreContext();
@@ -44,6 +45,10 @@ function MenuItem(menuItem) {
     }
   }
 
+  const moveToLogin = () => {
+
+  }
+
   return (
     <>
       <Card color="light" className="card-style">
@@ -73,12 +78,16 @@ function MenuItem(menuItem) {
             Add to order
           </Button>
         ) :
-          <Button
-            block
-            color="warning"
-            size="sm">
-            Sign in to add to cart!
-          </Button>
+
+          <Link to="/login" className="signup-link">
+            <Button
+              block
+              color="warning"
+              size="sm">
+              Sign in to add to cart!
+            </Button>
+          </Link>
+
         }
 
       </Card>

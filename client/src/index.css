@@ -269,6 +269,10 @@ input:focus {
   color: var(--error);
 }
 
+.signup-link {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 768px) {
   .card {
     width: 100%;

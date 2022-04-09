@@ -11,7 +11,7 @@ function RestaurantList() {
   let sampleRestaurantArray = [];
   const apiKey = process.env.REACT_APP_API;
 
-  let [restaurantsArray, setRestaurantsArray] = useState([]);
+  //let [restaurantsArray, setRestaurantsArray] = useState([]);
 
   function abbrState(input, to) {
 
@@ -85,13 +85,13 @@ function RestaurantList() {
     }
   }
 
-  /*let [restaurantsArray, setRestaurantsArray] = useState([{
+  let [restaurantsArray, setRestaurantsArray] = useState([{
     restaurant_name: 'OhZone', restaurant_phone: '(240) 844-1198', restaurant_website: 'http://www.misterdwash.wix.com/ohzonelounge-', hours: 'Mon-Thu: 10am-2am Fri-Sun: 10am-3am', price_range: '$', restaurant_id: 3890038376985698, cuisines: ['Bar Food']
 
   },
   {
     restaurant_name: 'Turning Natural', restaurant_phone: '(202) 800-8828', restaurant_website: 'http:///dc/washington/665098-turning-natural/', hours: '', price_range: '', restaurant_id: 3890038376985703, cuisines: ['American']
-  }]);*/
+  }]);
 
   function handleClick() {
     searchText = textInput.current.value;
@@ -227,6 +227,7 @@ function RestaurantList() {
         <Button color='primary' size='sm' onClick={handleClick}>Search</Button>
       </div>
       <div className="my-2">
+        <h1 className='error-text'>Unfortuantely, the API that provided data for this website has gone out of business. This webpage will be refactored. For now, sample data is provided below.</h1>
         <h2>Choose from the following restaurants!</h2>
         {restaurantsArray.length ? (
           <div className='flex-row center-content'>
@@ -234,7 +235,7 @@ function RestaurantList() {
               <RestaurantItem
                 key={restaurant.restaurant_id}
                 _id={restaurant.restaurant_id}
-                address={restaurant.address.formatted}
+                //address={restaurant.address.formatted}
                 restaurant_name={restaurant.restaurant_name}
                 price_range={restaurant.price_range}
                 cuisines={restaurant.cuisines}
