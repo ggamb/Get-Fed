@@ -155,7 +155,7 @@ function RestaurantList() {
   };
 
   function success(pos) {
-    var crd = pos.coords;
+    let crd = pos.coords;
 
     const options = {
       method: 'GET',
@@ -163,10 +163,7 @@ function RestaurantList() {
       params: {
         latitude: crd.latitude,
         longitude: crd.longitude,
-        open: 'true',
-        budget: '20',
         sort: 'relevance',
-        default_quote: 'false',
         maximum_miles: '3'
       },
       headers: {
@@ -175,22 +172,21 @@ function RestaurantList() {
       }
     };
 
-    axios.request(options).then(function (response) {
-      console.log(response.data);
-      response.data.restaurants.forEach(restaurant, index => {
-
-        while(index < 50) {
-          sampleRestaurantArray.push(restaurant);
-          index++;
-        }
-        
-
-
-        setRestaurantsArray(sampleRestaurantArray);
+    axios.request(options).then(response => {
+      console.log(response.data.restaurants);
+      response.data.restaurants.forEach(restaurant => {
+        sampleRestaurantArray.push(restaurant);
       });
+
+      setRestaurantsArray(sampleRestaurantArray);
+      
     }).catch(function (error) {
       console.error(error);
     });
+
+    
+
+    console.log(restaurantsArray)
   }
 
   function error(err) {
@@ -201,8 +197,6 @@ function RestaurantList() {
     navigator.geolocation.getCurrentPosition(success, error, options);
   }, [])
 
-
-  console.log('restraurants array', restaurantsArray);
 
   return (
     <>
@@ -226,9 +220,9 @@ function RestaurantList() {
                 phoneNumber={restaurant.phone_number}
                 website={restaurant.restaurant_website}
                 distance={restaurant.miles}
-                rating = {restaurant.weighted_rating_value}
-                photo = {restaurant.logo_photos[0]}
-                quoteID = {restaurant.quote_ids}
+                rating={restaurant.weighted_rating_value}
+                photo={restaurant.logo_photos[0]}
+                quoteID={restaurant.quote_ids}
               />
             ))}
           </div>

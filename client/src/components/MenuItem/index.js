@@ -12,17 +12,17 @@ import { Link } from "react-router-dom";
 function MenuItem(menuItem) {
   const [state, dispatch] = useStoreContext();
 
-  const { _id, itemName, itemPriceString, itemPriceFloat, category } = menuItem;
-  let { description } = menuItem;
+  const { _id, itemName } = menuItem;
+  let { description, itemPrice } = menuItem;
   //console.log("Menu Item", menuItem);
   const { cart } = state;
 
 
-  function capitalizeFirstLetter(string) {
+  /*function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  }*/
 
-  description = capitalizeFirstLetter(description);
+  //description = capitalizeFirstLetter(description);
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
@@ -41,13 +41,10 @@ function MenuItem(menuItem) {
         type: ADD_TO_CART,
         product: { ...menuItem, purchaseQuantity: 1 }
       });
-      // idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
   }
 
-  const moveToLogin = () => {
-
-  }
+  /*          */
 
   return (
     <>
@@ -56,13 +53,8 @@ function MenuItem(menuItem) {
           <CardTitle tag='h5'>
             {itemName}
           </CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">
-            {category ? (
-              <>{category}</>
-            ) : null}
-          </CardSubtitle>
           <CardText>
-            <p>{itemPriceString}</p>
+            <p>{itemPrice}</p>
             <p className="last-menu-item">{description}</p>
           </CardText>
         </CardBody>

@@ -5,6 +5,7 @@ import { ADD_PRODUCT } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 import { useLocation } from 'react-router-dom';
 import { Loader } from "@googlemaps/js-api-loader";
+import Category from '../Category';
 const axios = require("axios");
 
 function Menu() {
@@ -57,11 +58,8 @@ function Menu() {
       response.data.categories.forEach(menuItem => {
         console.log(response.data.categories)
         sampleMenuData.push(menuItem);
-
-
-        setMenuData(sampleMenuData);
       });
-
+      setMenuData(sampleMenuData);
 
     }).catch(function (error) {
       console.error(error);
@@ -133,18 +131,17 @@ function Menu() {
         <h4>Choose from the following menu items:</h4>
         <br></br>
         {menuData.length ? (
-          <div className="flex-row center-content">
-            {menuData.map(menuItem => (
-              <MenuItem
-                key={menuItem.item_id}
-                _id={menuItem.item_id}
-                itemName={menuItem.categories.name}
-                itemPriceFloat={menuItem.menu_item_price}
+          <div className="flex-row flex-start">
+              <>
+                <Category
+                  //_id={menuItem.item_id}
+                  categoryDetail = {menuData}
+                //itemPriceFloat={menuItem.menu_item_price}
                 //itemPriceString={menuItem.menu_item_pricing[0].priceString}
-                category={menuItem.subsection}
-                description={menuItem.menu_item_description}
-              />
-            ))}
+                //category={menuItem.subsection}
+                //description={menuItem.menu_item_description}
+                />
+              </>
           </div>
         ) : (
           <h3>There is no menu data for this restaurant :(</h3>

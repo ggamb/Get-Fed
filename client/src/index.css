@@ -153,6 +153,7 @@ input:focus {
 .flex-row {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .center-content {
@@ -161,6 +162,10 @@ input:focus {
 
 .space-between {
   justify-content: space-between;
+}
+
+.flex-start {
+  justify-content: flex-start;
 }
 
 .flex-end {
@@ -271,6 +276,11 @@ input:focus {
 
 .signup-link {
   text-decoration: none;
+}
+
+.categories {
+  margin: 0 0 25px 0;
+  font-weight: bolder;
 }
 
 @media screen and (max-width: 768px) {
