@@ -3,15 +3,16 @@ import RestaurantItem from '../RestaurantItem';
 // import { useStoreContext } from '../../utils/GlobalState';
 import { Button } from 'reactstrap';
 // import { idbPromise } from '../../utils/helpers';
+const axios = require("axios");
 
 function RestaurantList() {
 
   const textInput = useRef(null);
   let searchText = null;
   let sampleRestaurantArray = [];
-  const apiKey = process.env.REACT_APP_API;
+  const apiKey = process.env.REACT_APP_API_MEALME;
 
-  //let [restaurantsArray, setRestaurantsArray] = useState([]);
+  let [restaurantsArray, setRestaurantsArray] = useState([]);
 
   function abbrState(input, to) {
 
@@ -85,20 +86,20 @@ function RestaurantList() {
     }
   }
 
-  let [restaurantsArray, setRestaurantsArray] = useState([{
+  /*let [restaurantsArray, setRestaurantsArray] = useState([{
     restaurant_name: 'OhZone', restaurant_phone: '(240) 844-1198', restaurant_website: 'http://www.misterdwash.wix.com/ohzonelounge-', hours: 'Mon-Thu: 10am-2am Fri-Sun: 10am-3am', price_range: '$', restaurant_id: 3890038376985698, cuisines: ['Bar Food']
 
   },
   {
     restaurant_name: 'Turning Natural', restaurant_phone: '(202) 800-8828', restaurant_website: 'http:///dc/washington/665098-turning-natural/', hours: '', price_range: '', restaurant_id: 3890038376985703, cuisines: ['American']
-  }]);
+  }]);*/
 
   function handleClick() {
     searchText = textInput.current.value;
 
     textInput.current.value = '';
 
-    if (isNaN(searchText)) {
+    /*if (isNaN(searchText)) {
       //Search is a string so assumed to be a search for a state
 
       //Passes search text to function to change state name to abbreviation for API fetch
@@ -143,7 +144,7 @@ function RestaurantList() {
         .catch(err => {
           console.error(err);
         });
-    }
+    }*/
 
   }
 
@@ -156,23 +157,40 @@ function RestaurantList() {
   function success(pos) {
     var crd = pos.coords;
 
-    fetch(`https://api.documenu.com/v2/restaurants/search/geo?lat=${crd.latitude}&lon=${crd.longitude}&distance=20&size=30&page=1&fullmenu=true&top_cuisines=false`, {
-      "method": "GET",
-      "headers": {
-        "x-api-key": apiKey
+    const options = {
+      method: 'GET',
+      url: 'https://mealme.p.rapidapi.com/restaurants/search/store',
+      params: {
+        latitude: crd.latitude,
+        longitude: crd.longitude,
+        open: 'true',
+        budget: '20',
+        sort: 'relevance',
+        default_quote: 'false',
+        maximum_miles: '3'
+      },
+      headers: {
+        'X-RapidAPI-Host': 'mealme.p.rapidapi.com',
+        'X-RapidAPI-Key': apiKey
       }
-    })
-      .then(response => response.json())
-      .then(restaurantData => {
-        restaurantData.data.forEach(restaurant => {
+    };
+
+    axios.request(options).then(function (response) {
+      console.log(response.data);
+      response.data.restaurants.forEach(restaurant, index => {
+
+        while(index < 50) {
           sampleRestaurantArray.push(restaurant);
-        });
+          index++;
+        }
+        
+
 
         setRestaurantsArray(sampleRestaurantArray);
-      })
-      .catch(err => {
-        console.error(err);
       });
+    }).catch(function (error) {
+      console.error(error);
+    });
   }
 
   function error(err) {
@@ -186,40 +204,6 @@ function RestaurantList() {
 
   console.log('restraurants array', restaurantsArray);
 
-  //   const { currentCategory } = state;
-
-
-  //   useEffect(() => {
-  //     if (data) {
-  //       dispatch({
-  //         type: UPDATE_PRODUCTS,
-  //         products: data.products,
-  //       });
-  //       data.products.forEach((product) => {
-  //         idbPromise('products', 'put', product);
-  //       });
-  //     } else if (!loading) {
-  //       idbPromise('products', 'get').then((products) => {
-  //         dispatch({
-  //           type: UPDATE_PRODUCTS,
-  //           products: products,
-  //         });
-  //       });
-  //     }
-  //   }, [data, loading, dispatch]);
-
-  //   function filterProducts() {
-  //     if (!currentCategory) {
-  //       return state.products;
-  //     }
-
-  //     return state.products.filter(
-  //       (product) => product.category._id === currentCategory
-  //     );
-  //   }
-
-  /**/
-
   return (
     <>
       <div>
@@ -227,21 +211,24 @@ function RestaurantList() {
         <Button color='primary' size='sm' onClick={handleClick}>Search</Button>
       </div>
       <div className="my-2">
-        <h1 className='error-text'>Unfortuantely, the API that provided data for this website has gone out of business. This webpage will be refactored. For now, sample data is provided below.</h1>
-        <h2>Choose from the following restaurants!</h2>
+        <h1>Choose from the following restaurants!</h1>
         {restaurantsArray.length ? (
           <div className='flex-row center-content'>
             {restaurantsArray.map(restaurant => (
               <RestaurantItem
-                key={restaurant.restaurant_id}
-                _id={restaurant.restaurant_id}
-                //address={restaurant.address.formatted}
-                restaurant_name={restaurant.restaurant_name}
-                price_range={restaurant.price_range}
+                key={restaurant._id}
+                _id={restaurant._id}
+                address={restaurant.address.street_addr}
+                restaurant_name={restaurant.name}
+                //price_range={restaurant.price_range}
                 cuisines={restaurant.cuisines}
-                hours={restaurant.hours}
-                phoneNumber={restaurant.restaurant_phone}
+                //hours={restaurant.local_hours.dine_in}
+                phoneNumber={restaurant.phone_number}
                 website={restaurant.restaurant_website}
+                distance={restaurant.miles}
+                rating = {restaurant.weighted_rating_value}
+                photo = {restaurant.logo_photos[0]}
+                quoteID = {restaurant.quote_ids}
               />
             ))}
           </div>

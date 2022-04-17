@@ -22,7 +22,11 @@ function RestaurantItem(restaurantDetail) {
     hours,
     cuisines,
     phoneNumber,
-    website
+    website,
+    distance,
+    rating,
+    photo,
+    quoteID
   } = restaurantDetail;
 
   //Adds commas to cuisines to be displayed
@@ -75,15 +79,16 @@ function RestaurantItem(restaurantDetail) {
             <Link
               className="restaurant-link"
               to={{
-                pathname: `/restaurant/${_id}`,
+                pathname: `/restaurant/${quoteID}`,
                 state:
                 {
                   name: restaurant_name,
-                  priceRange: price_range,
+                  //priceRange: price_range,
                   address,
                   hours,
                   phoneNumber,
-                  website
+                  website,
+                  quoteID
                 }
               }} >
               {restaurant_name}

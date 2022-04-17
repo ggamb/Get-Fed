@@ -5,23 +5,24 @@ import { ADD_PRODUCT } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 import { useLocation } from 'react-router-dom';
 import { Loader } from "@googlemaps/js-api-loader";
+const axios = require("axios");
 
 function Menu() {
 
   //Sample data for use if key not working
-  let [menuData, setMenuData] = useState([
+  /*let [menuData, setMenuData] = useState([
     { _id: '2797408369084165701', menu_item_name: '6 Point', menu_item_price: 3.5, itemPriceString: '$3.50', subsection: 'Draft Beer', menu_item_description: 'A beer' },
     {
       _id: '5668391956307511358', menu_item_name: 'The Rooster', menu_item_price: 15, itemPriceString: '$15.00', subsection: 'Burgers & Sandwiches', menu_item_description: 'a tasty sandwich'
     }
-  ]);
+  ]);*/
 
   //State setter used to display menu data and related info
-  //let [menuData, setMenuData] = useState([]);
+  let [menuData, setMenuData] = useState([]);
   const { id } = useParams();
 
   //API key in .env in root of client folder
-  const apiKey = process.env.REACT_APP_API;
+  const apiKey = process.env.REACT_APP_API_MEALME;
   const googleApiKey = process.env.REACT_APP_API_GOOGLE;
 
   //GraphQL mutation to add products to database
@@ -37,38 +38,35 @@ function Menu() {
   });
 
   //Sets menu items based on call to API
-  /*useEffect(() => {
+  useEffect(() => {
     let sampleMenuData = [];
 
-    fetch(`https://api.documenu.com/v2/restaurant/${id}/menuitems`, {
-      "method": "GET",
-      "headers": {
-        "x-api-key": apiKey
+    const options = {
+      method: 'GET',
+      url: 'https://mealme.p.rapidapi.com/restaurants/details/menu',
+      params: {
+        quote_id: id,
+      },
+      headers: {
+        'X-RapidAPI-Host': 'mealme.p.rapidapi.com',
+        'X-RapidAPI-Key': apiKey
       }
-    })
-      .then(response => response.json())
-      .then(menu => {
-        menu.data.forEach(menuItem => {
-          //Adds all menu items to sampleMenuData array to be used in setter below
-          sampleMenuData.push(menuItem);
+    };
 
-          //Adds all products to database based on graphQL mutation
-          addProduct({
-            variables: {
-              name: menuItem.menu_item_name,
-              price: menuItem.menu_item_price,
-              description: menuItem.menu_item_description
-            }
-          })
-        })
+    axios.request(options).then(function (response) {
+      response.data.categories.forEach(menuItem => {
+        console.log(response.data.categories)
+        sampleMenuData.push(menuItem);
+
 
         setMenuData(sampleMenuData);
-
-      })
-      .catch(err => {
-        console.error(err);
       });
-  }, []);*/
+
+
+    }).catch(function (error) {
+      console.error(error);
+    });
+  }, []);
 
   //Gives location of restaurant via call to Google Maps API to get lat/long and then call to Google Maps again to display map
   useEffect(() => {
@@ -140,7 +138,7 @@ function Menu() {
               <MenuItem
                 key={menuItem.item_id}
                 _id={menuItem.item_id}
-                itemName={menuItem.menu_item_name}
+                itemName={menuItem.categories.name}
                 itemPriceFloat={menuItem.menu_item_price}
                 //itemPriceString={menuItem.menu_item_pricing[0].priceString}
                 category={menuItem.subsection}
