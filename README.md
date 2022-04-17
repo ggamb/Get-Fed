@@ -12,7 +12,7 @@
 
 Get Fed is an Uber Eats clone where users can find restaurants near them, search through menus, and add items to their carts. Users can create accounts, log in, and sign out. If a user is logged in, they can use the checkout function to buy their products.
 
-Get Fed leverages the publicly available ~[Documenu API](https://documenu.com/)~ (Unfortuantely, after this project was finished, the Documenu website and all API support no longer exist. We are working to find a suitable alternative to Documenu) to find restaurants near you, provide information about restaurants including name, cuisine, phone number, website, hours of operation, and price range ($-$$$$). Clicking on a restaurant will show the restaurant's menu also provided by ~Documenu~ (see above).
+Get Fed leverages the publicly available [MealMe API](https://rapidapi.com/mealme-mealme-default/api/mealme/) to find restaurants near you, provide information about restaurants including name, cuisine, phone number, and much more!. Clicking on a restaurant will show the restaurant's menu also provided by MealMe.
 
 This application also allows for fully functional checkout using [Stripe API](https://stripe.com/docs). To checkout use 42424242424242 as your credit card number and you will be redirected to the home page.
 
