@@ -31,9 +31,10 @@ function Category(categoryDetail) {
                         <div className="flex-row center-content">
                             {category.menu_item_list.map(menuItems => (
                                 <MenuItem
+                                    _id={menuItems.product_id}
                                     itemName={menuItems.name}
                                     description={menuItems.description}
-                                    itemPrice={menuItems.price}
+                                    itemPrice={(menuItems.price/100).toFixed(2)}
                                 />
                             ))}
                         </div>

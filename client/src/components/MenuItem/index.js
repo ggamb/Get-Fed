@@ -14,15 +14,9 @@ function MenuItem(menuItem) {
 
   const { _id, itemName } = menuItem;
   let { description, itemPrice } = menuItem;
-  //console.log("Menu Item", menuItem);
   const { cart } = state;
 
 
-  /*function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }*/
-
-  //description = capitalizeFirstLetter(description);
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
@@ -44,7 +38,6 @@ function MenuItem(menuItem) {
     }
   }
 
-  /*          */
 
   return (
     <>
@@ -54,7 +47,7 @@ function MenuItem(menuItem) {
             {itemName}
           </CardTitle>
           <CardText>
-            <p>{itemPrice}</p>
+            <p>${itemPrice}</p>
             <p className="last-menu-item">{description}</p>
           </CardText>
         </CardBody>
@@ -70,7 +63,6 @@ function MenuItem(menuItem) {
             Add to order
           </Button>
         ) :
-
           <Link to="/login" className="signup-link">
             <Button
               block
@@ -79,7 +71,6 @@ function MenuItem(menuItem) {
               Sign in to add to cart!
             </Button>
           </Link>
-
         }
 
       </Card>

@@ -128,18 +128,12 @@ function Menu() {
       <br></br>
 
       <div className="my-2">
-        <h4>Choose from the following menu items:</h4>
         <br></br>
         {menuData.length ? (
           <div className="flex-row flex-start">
               <>
                 <Category
-                  //_id={menuItem.item_id}
                   categoryDetail = {menuData}
-                //itemPriceFloat={menuItem.menu_item_price}
-                //itemPriceString={menuItem.menu_item_pricing[0].priceString}
-                //category={menuItem.subsection}
-                //description={menuItem.menu_item_description}
                 />
               </>
           </div>

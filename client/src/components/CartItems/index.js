@@ -8,7 +8,7 @@ const CartItems = ({ item }) => {
 
   console.log(item);
 
-  const {category, itemName, itemPriceFloat, itemPriceString, purchaseQuantity} = item;
+  const {category, itemName, itemPrice, itemPriceString, purchaseQuantity} = item;
 
   const removeFromCart = (item) => {
     dispatch({
@@ -40,7 +40,7 @@ const CartItems = ({ item }) => {
     <div className="flex-row">
       <div>
         <div>
-          {itemName}, {itemPriceString}
+          {itemName}, {itemPrice}
         </div>
         <div>
           <span>Qty:</span>

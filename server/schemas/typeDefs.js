@@ -42,7 +42,7 @@ const typeDefs = gql`
   input ProductInput {
     _id: ID
     itemName: String!
-    itemPriceFloat: Float!
+    itemPrice: Float!
     quantity: Int
     description: String
   }
