@@ -7,7 +7,9 @@ import {
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
     CLEAR_CART,
-    TOGGLE_CART
+    TOGGLE_CART,
+    TOGGLE_FILTERED,
+    CLEAR_FILTER
 } from './actions';
 
 import { useReducer } from 'react';
@@ -80,6 +82,18 @@ export const reducer = (state, action) => {
                 ...state,
                 cartOpen: !state.cartOpen
             };
+
+        case TOGGLE_FILTERED:
+            return {
+                ...state,
+                filtered: true,
+                filteredCategory: action.filteredCategory
+            }
+        case CLEAR_FILTER:
+            return{
+                ...state,
+                filtered: false
+            }
 
         default:
             return state;

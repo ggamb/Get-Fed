@@ -213,6 +213,10 @@ input:focus {
   padding-bottom: var(--spacing-two);
 }
 
+.filters-style {
+  margin: 5px;
+}
+
 .card-style {
   margin: 5px 5px;
 }

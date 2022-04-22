@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import MenuItem from "../MenuItem";
 
-function Category(categoryDetail) {
+function Category({categoryDetail}) {
 
     useEffect(() => {
         console.log(categoryDetail);
@@ -24,7 +24,7 @@ function Category(categoryDetail) {
 
     return (
         <>
-            {categoryDetail.categoryDetail.map(category => (
+            {categoryDetail.map(category => (
                 <>
                     <div>
                         <h4 className="categories">{category.name}</h4>
