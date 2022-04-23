@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import MenuItem from "../MenuItem";
 
-function Category({categoryDetail}) {
+function Category({ categoryDetail }) {
 
     useEffect(() => {
         console.log(categoryDetail);
@@ -34,7 +34,7 @@ function Category({categoryDetail}) {
                                     _id={menuItems.product_id}
                                     itemName={menuItems.name}
                                     description={menuItems.description}
-                                    itemPrice={(menuItems.price/100).toFixed(2)}
+                                    itemPrice={(menuItems.price / 100).toFixed(2)}
                                 />
                             ))}
                         </div>

@@ -3,22 +3,16 @@ import { TOGGLE_FILTERED, CLEAR_FILTER } from "../../utils/actions";
 
 const Filters = ({filtersList}) => {
 
-    const [state, dispatch] = useStoreContext();
+    const [dispatch] = useStoreContext();
 
     const filterRestaurants = (e) => {
         let categoryToFilter = e.target.textContent;
-        
+    
         dispatch({type: TOGGLE_FILTERED, filteredCategory: categoryToFilter})
-
-        console.log(state.filtered)
     };
 
     const clearFilter = (e) => {
-        console.log(e.target.textContent);
-
         dispatch({type: CLEAR_FILTER})
-
-        console.log(state.filtered)
     }
 
 

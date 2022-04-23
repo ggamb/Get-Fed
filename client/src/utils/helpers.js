@@ -56,8 +56,7 @@ export function idbPromise(storeName, method, object) {
 }
 
 export function abbrState(input, to) {
-
-  var states = [
+  const states = [
     ['Arizona', 'AZ'],
     ['Alabama', 'AL'],
     ['Alaska', 'AK'],

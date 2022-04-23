@@ -118,7 +118,7 @@ function Menu() {
         }
         <h3>{location.state.address}</h3>
         <h3>{location.state.phoneNumber}</h3>
-        <h3><a href={location.state.website}>Website</a></h3>
+        {/*This API does not have websites <h3><a href={location.state.website}>Website</a></h3> */}
       </div>
 
       <br></br>
@@ -130,7 +130,7 @@ function Menu() {
       <div className="my-2">
         <br></br>
         {menuData.length ? (
-          <div className="flex-row flex-start">
+          <div className="flex-start">
               <>
                 <Category
                   categoryDetail = {menuData}

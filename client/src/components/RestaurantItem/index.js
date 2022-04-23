@@ -1,15 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 // import { pluralize } from "../../utils/helpers"
 // import { useStoreContext } from "../../utils/GlobalState";
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
+//import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 // import { idbPromise } from "../../utils/helpers";
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, ListGroup, ListGroupItem, List
 } from 'reactstrap';
-
-
 
 function RestaurantItem(restaurantDetail) {
 
@@ -33,8 +31,14 @@ function RestaurantItem(restaurantDetail) {
   let cuisinesString = '';
 
   if (cuisines[0] !== '') {
-    for (let i = 0; i < cuisines.length; i++) {
-      if (i < cuisines.length - 1) {
+    for (let i = 0; i < 5; i++) {
+      if(cuisines[i] === undefined) {
+        continue;
+      }
+
+      if (i === cuisines.length-1) {
+        cuisinesString += cuisines[i];
+      } else if (i < 4) {
         cuisinesString += cuisines[i] + ", ";
       } else {
         cuisinesString += cuisines[i];
@@ -47,6 +51,8 @@ function RestaurantItem(restaurantDetail) {
     var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
     return (res !== null)
   };
+
+  const [showMore, setShowMore] = useState(false);
 
   // const { cart } = state
 
@@ -100,7 +106,6 @@ function RestaurantItem(restaurantDetail) {
             ) : null}
           </CardSubtitle>
           <ListGroup className="restaurant-list-group">
-
             {address ? (
               <ListGroupItem><p className="restaurant-header">Address:</p> {address}</ListGroupItem>
             ) : null}
@@ -109,12 +114,18 @@ function RestaurantItem(restaurantDetail) {
               <ListGroupItem><p className="restaurant-header">Number:</p>{phoneNumber}</ListGroupItem>
             ) : null}
 
-            {website && isValidURL(website) ? (
+            {/* MealMe API does not contain a website for restaurants
+            
+            website && isValidURL(website) ? (
               <ListGroupItem><a href={website} target="_blank">Website</a></ListGroupItem>
-            ) : null}
+            ) : null*/}
 
             {hours ? (
-              <ListGroupItem><p className="restaurant-header">Hours:</p>{hours}</ListGroupItem>
+              <ListGroupItem>
+                <p className="restaurant-header">Hours:</p>
+                {showMore ? hours : `${hours.substring(0, 52)}`}
+                <p className="show-more-button" onClick= {() => setShowMore(!showMore)}>{showMore ? 'Show less' : 'Show more'}</p>
+              </ListGroupItem>
             ) : null}
 
             {price_range ? (

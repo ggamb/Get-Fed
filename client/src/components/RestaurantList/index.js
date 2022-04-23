@@ -6,11 +6,10 @@ import { Button } from 'reactstrap';
 const axios = require("axios");
 import Filters from '../Filters';
 import { useStoreContext } from "../../utils/GlobalState";
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 
 function RestaurantList() {
 
-  const [state, dispatch] = useStoreContext();
+  const [state] = useStoreContext();
 
   const textInput = useRef(null);
   let searchText = null;
@@ -18,6 +17,7 @@ function RestaurantList() {
   const apiKey = process.env.REACT_APP_API_MEALME;
 
   let [restaurantsArray, setRestaurantsArray] = useState([]);
+
 
   /*let [restaurantsArray, setRestaurantsArray] = useState([{
     restaurant_name: 'OhZone', restaurant_phone: '(240) 844-1198', restaurant_website: 'http://www.misterdwash.wix.com/ohzonelounge-', hours: 'Mon-Thu: 10am-2am Fri-Sun: 10am-3am', price_range: '$', restaurant_id: 3890038376985698, cuisines: ['Bar Food']
@@ -117,7 +117,6 @@ function RestaurantList() {
       console.error(error);
     });
 
-    console.log(restaurantsArray)
   }
 
   function error(err) {
@@ -127,6 +126,30 @@ function RestaurantList() {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success, error, options);
   }, [])
+
+  const formatPhoneNum = (phoneNumber) => {
+    return `(${phoneNumber.toString().slice(1, 4)})-${phoneNumber.toString().slice(4, 7)}-${phoneNumber.toString().slice(7, 11)}`;
+  }
+
+  const formatToDollarSign = (dollarSigns) => {
+    let returnDollars = '';
+
+    while (dollarSigns < 0) {
+      returnDollars += '$'
+    }
+
+    return returnDollars;
+  }
+
+  const formatHours = (hoursObject) => {
+    let hoursString = '';
+
+    for (let days in hoursObject) {
+      hoursString += days + ': ' + hoursObject[days] + '\n' ;
+    }
+
+    return hoursString;
+  }
 
   const filtersList = [
     { name: 'Mexican' },
@@ -144,7 +167,6 @@ function RestaurantList() {
     { name: 'Vegan' },
   ];
 
-
   return (
     <>
       {/* Search bar to be reimplemented with new API
@@ -154,35 +176,55 @@ function RestaurantList() {
         <Button color='primary' size='sm' onClick={handleClick}>Search</Button>
   </div>*/}
 
+      <h1>Choose from the following restaurants!</h1>
       <p>Filters:</p>
       <Filters filtersList={filtersList}></Filters>
-
-
       <div className="my-2">
-        <h1>Choose from the following restaurants!</h1>
-        {restaurantsArray.length ? (
-          <div className='flex-row center-content'>
-            {restaurantsArray.map(restaurant => (
-              <RestaurantItem
-                key={restaurant._id}
-                _id={restaurant._id}
-                address={restaurant.address.street_addr}
-                restaurant_name={restaurant.name}
-                //price_range={restaurant.price_range}
-                cuisines={restaurant.cuisines}
-                //hours={restaurant.local_hours.dine_in}
-                phoneNumber={restaurant.phone_number}
-                website={restaurant.restaurant_website}
-                distance={restaurant.miles}
-                rating={restaurant.weighted_rating_value}
-                photo={restaurant.logo_photos[0]}
-                quoteID={restaurant.quote_ids}
-              />
-            ))}
-          </div>
-        ) : (
-          <h3>Please turn on geolocation or use the search bar above!</h3>
-        )}
+        {
+          state.filtered && restaurantsArray.length ? (
+            <div className='flex-row center-content'>
+              {restaurantsArray.filter(restaurant => restaurant.cuisines.includes(state.filteredCategory)).map(filteredRestaurants => (
+                <RestaurantItem
+                  key={filteredRestaurants._id}
+                  _id={filteredRestaurants._id}
+                  quoteID={filteredRestaurants.quote_ids}
+                  restaurant_name={filteredRestaurants.name}
+                  address={filteredRestaurants.address.street_addr}
+                  price_range={formatToDollarSign(filteredRestaurants.dollar_signs)}
+                  cuisines={filteredRestaurants.cuisines}
+                  hours={formatHours(filteredRestaurants.local_hours.dine_in)}
+                  phoneNumber={formatPhoneNum(filteredRestaurants.phone_number)}
+                  website={filteredRestaurants.restaurant_website}
+                  distance={filteredRestaurants.miles}
+                  rating={filteredRestaurants.weighted_rating_value}
+                  photo={filteredRestaurants.logo_photos[0]}
+                />
+              ))}
+            </div>
+          ) : restaurantsArray.length ? (
+            <div className='flex-row center-content'>
+              {restaurantsArray.map(restaurant => (
+                <RestaurantItem
+                  key={restaurant._id}
+                  _id={restaurant._id}
+                  address={restaurant.address.street_addr}
+                  restaurant_name={restaurant.name}
+                  price_range={formatToDollarSign(restaurant.dollar_signs)}
+                  cuisines={restaurant.cuisines}
+                  hours={formatHours(restaurant.local_hours.dine_in)}
+                  phoneNumber={formatPhoneNum(restaurant.phone_number)}
+                  website={restaurant.restaurant_website}
+                  distance={restaurant.miles}
+                  rating={restaurant.weighted_rating_value}
+                  photo={restaurant.logo_photos[0]}
+                  quoteID={restaurant.quote_ids}
+                />
+              ))}
+            </div>
+          ) : (
+            <h3>Please turn on geolocation or use the search bar above!</h3>
+          )
+        }
       </div>
     </>
   );
