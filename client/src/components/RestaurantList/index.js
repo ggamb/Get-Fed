@@ -152,19 +152,19 @@ function RestaurantList() {
   }
 
   const filtersList = [
-    { name: 'Mexican' },
-    { name: 'American' },
-    { name: 'Italian' },
-    { name: 'Chinese' },
-    { name: 'Indian' },
-    { name: 'Fast Food' },
-    { name: 'Breakfast' },
-    { name: 'Sandwich' },
-    { name: 'Burgers' },
-    { name: 'Dessert' },
-    { name: 'Seafood' },
-    { name: 'Vegetarian' },
-    { name: 'Vegan' },
+    { name: 'Mexican', image: '🌮' },
+    { name: 'American', image: '🌭'},
+    { name: 'Italian',  image: '🍝'},
+    { name: 'Chinese', image: '🍚'},
+    { name: 'Indian', image:'🍛'},
+    { name: 'Fast Food', image: '🍟'},
+    { name: 'Breakfast', image: '🧇'},
+    { name: 'Sandwich', image: '🥪'},
+    { name: 'Burgers', image: '🍔' },
+    { name: ' Dessert', image: '🍨' },
+    { name: 'Seafood', image: '🦀' },
+    { name: 'Vegetarian', image: '🥬'},
+    { name: 'Vegan' , image: '🥦'},
   ];
 
   return (
