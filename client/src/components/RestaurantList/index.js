@@ -11,8 +11,8 @@ function RestaurantList() {
 
   const [state] = useStoreContext();
 
-  const textInput = useRef(null);
-  let searchText = null;
+  //const textInput = useRef(null);
+  //let searchText = null;
   let sampleRestaurantArray = [];
   const apiKey = process.env.REACT_APP_API_MEALME;
 
@@ -27,7 +27,7 @@ function RestaurantList() {
     restaurant_name: 'Turning Natural', restaurant_phone: '(202) 800-8828', restaurant_website: 'http:///dc/washington/665098-turning-natural/', hours: '', price_range: '', restaurant_id: 3890038376985703, cuisines: ['American']
   }]);*/
 
-  function handleClick() {
+  /*function handleClick() {
     searchText = textInput.current.value;
 
     textInput.current.value = '';
@@ -77,9 +77,9 @@ function RestaurantList() {
         .catch(err => {
           console.error(err);
         });
-    }*/
+    }
 
-  }
+  }*/
 
   var options = {
     enableHighAccuracy: true,
@@ -222,7 +222,7 @@ function RestaurantList() {
               ))}
             </div>
           ) : (
-            <h3>Please turn on geolocation or use the search bar above!</h3>
+            <h3>Please turn on geolocation to find food near you!</h3>
           )
         }
       </div>
